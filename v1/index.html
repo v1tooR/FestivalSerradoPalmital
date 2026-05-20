@@ -1,6 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TTL2DZ2S');
+  </script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Festival Serra do Palmital | Gastronomia, Cinema e Cultura no Vale do Paraíba</title>
@@ -656,6 +665,49 @@
     .sdeco { position: absolute; pointer-events: none; z-index: 1; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      html {
+        scrollbar-width: auto;
+        -ms-overflow-style: auto;
+      }
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        display: initial;
+        width: initial;
+        height: initial;
+      }
+      .chap-nav {
+        display: none;
+      }
+      #scrollTrack {
+        height: auto;
+      }
+      #scrollStage {
+        position: relative;
+        top: auto;
+        height: auto;
+        overflow: visible;
+      }
+      #scrollStrip {
+        display: block;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+      }
+      .scene {
+        width: 100%;
+        height: auto;
+        min-height: 100svh;
+        flex-shrink: 1;
+      }
+      .scroll-cue {
+        display: none;
+      }
+      #decor {
+        display: none;
+      }
+    }
+
     @media (max-width: 580px) {
       /* Nav mobile */
       nav { padding: .42rem 1rem; }
@@ -780,6 +832,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTL2DZ2S"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
 
   <div id="progressBar" aria-hidden="true"></div>
@@ -1103,13 +1159,42 @@
     const ctaSub       = document.getElementById('ctaSub');
     const ctaBtn       = document.getElementById('ctaBtn');
     const ctaNote      = document.getElementById('ctaNote');
+    const animatedEls  = [
+      chapLabel, sl0, sl1, sl2, storyBody,
+      pilaresHeader, ...pilars,
+      ctaKicker, ctaTitle, ctaSub, ctaBtn, ctaNote
+    ];
+    const desktopQuery = window.matchMedia('(min-width: 769px)');
+    let isDesktop = desktopQuery.matches;
+    let activeMode = null;
 
-    /* ─ Start non-hero elements invisible ─ */
-    [chapLabel, sl0, sl1, sl2, storyBody,
-     pilaresHeader, ...pilars,
-     ctaKicker, ctaTitle, ctaSub, ctaBtn, ctaNote
-    ].forEach(el => { el.style.opacity = 0; });
-    chamadaOrn.style.opacity = 0;
+    function setDesktopStartState() {
+      animatedEls.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = '';
+      });
+      chamadaOrn.style.opacity = 0;
+    }
+
+    function setMobileStartState() {
+      cancelAnimationFrame(rafId);
+      lerpX = 0;
+      targetX = 0;
+      strip.style.transform = 'none';
+      heroContent.style.opacity = 1;
+      heroContent.style.transform = 'none';
+      animatedEls.forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
+      chamadaOrn.style.opacity = '';
+      decoWraps.forEach(w => { w.style.transform = 'none'; });
+      chapNav.classList.remove('light');
+      dots.forEach((d,i) => d.classList.toggle('active', i === 0));
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      nav.classList.remove('nav-hidden');
+      updateProgressBar();
+    }
 
     /* ════════════════════════════════════════
        HORIZONTAL SCROLL ENGINE
@@ -1130,6 +1215,11 @@
     let lerpX  = 0; // current lerped position
     let targetX = 0;
     let rafId;
+
+    function updateProgressBar() {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
+    }
 
     function globalP() {
       const rect  = track.getBoundingClientRect();
@@ -1200,12 +1290,12 @@
       nav.classList.toggle('nav-hidden', window.scrollY > window.innerHeight * 0.18);
 
       /* ─ Progress bar ─ */
-      const total = document.body.scrollHeight - window.innerHeight;
-      bar.style.width = (window.scrollY / total * 100) + '%';
+      updateProgressBar();
     }
 
     /* ─ Lerp animation loop ─ */
     function animate() {
+      if (!isDesktop) return;
       lerpX += (targetX - lerpX) * 0.10;
       if (Math.abs(lerpX - targetX) < 0.3) lerpX = targetX;
       strip.style.transform = 'translateX(' + lerpX + 'px)';
@@ -1215,18 +1305,46 @@
       });
       rafId = requestAnimationFrame(animate);
     }
-    animate();
 
     /* ─ Scroll handler ─ */
     function onScroll() {
+      if (!isDesktop) {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+        nav.classList.remove('nav-hidden');
+        updateProgressBar();
+        return;
+      }
       const p = globalP();
       targetX = computeTargetX(p);
       updateReveal(p);
     }
 
+    function syncScrollMode() {
+      isDesktop = desktopQuery.matches;
+      const nextMode = isDesktop ? 'desktop' : 'mobile';
+      if (activeMode === nextMode) {
+        onScroll();
+        return;
+      }
+      activeMode = nextMode;
+      if (isDesktop) {
+        setDesktopStartState();
+        onScroll();
+        cancelAnimationFrame(rafId);
+        animate();
+      } else {
+        setMobileStartState();
+      }
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll,  { passive: true });
-    onScroll(); // initial state
+    window.addEventListener('resize', syncScrollMode,  { passive: true });
+    if (desktopQuery.addEventListener) {
+      desktopQuery.addEventListener('change', syncScrollMode);
+    } else {
+      desktopQuery.addListener(syncScrollMode);
+    }
+    syncScrollMode(); // initial state
 
     /* ════════════════════════════════════════
        DOT CLICK — jump to scene
@@ -1234,6 +1352,7 @@
     const scenePStart = [0.000, 0.267, 0.533, 0.800];
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
+        if (!isDesktop) return;
         const ch    = +dot.dataset.ch;
         const extra = track.offsetHeight - window.innerHeight;
         const top   = track.offsetTop + scenePStart[ch] * extra;
