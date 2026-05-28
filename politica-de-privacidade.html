@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade | Festival Serra do Palmital</title>
+  <meta name="description" content="Política de Privacidade do Festival Serra do Palmital. Saiba como tratamos seus dados pessoais em conformidade com a LGPD (Lei nº 13.709/2018).">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://festivalserradopalmital.com.br/politica-de-privacidade">
+  <link rel="icon" href="../img/LOGO_FSP-01.png" type="image/png">
+  <link rel="apple-touch-icon" href="../img/LOGO_FSP-01.png">
+  <link rel="preload" href="../fonts/fonnts.com-Kiln_Sans_Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="../fonts/fonnts.com-Kiln_Sans_Spiked.otf" as="font" type="font/otf" crossorigin>
+
+  <style>
+    @font-face {
+      font-family: 'Kiln Sans';
+      src: url('../fonts/fonnts.com-Kiln_Sans_Regular.otf') format('opentype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Kiln Sans';
+      src: url('../fonts/fonnts.com-Kiln_Sans_Regular_Italic.otf') format('opentype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Kiln Sans Spiked';
+      src: url('../fonts/fonnts.com-Kiln_Sans_Spiked.otf') format('opentype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #FFEBCA;
+      --cream-dark:   #f5ddb0;
+      --caramel:      #D19441;
+      --sage:         #739256;
+      --amber:        #F7A92C;
+      --burnt-orange: #D7731F;
+      --rust:         #9A4A1C;
+      --teal:         #13738C;
+      --forest:       #284239;
+      --forest-mid:   #3a5e52;
+      --khaki:        #604E29;
+      --near-black:   #111A19;
+
+      --font-display:   'Kiln Sans Spiked', Georgia, serif;
+      --font-body:      'Kiln Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--near-black);
+      color: var(--cream);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: fixed; top: .75rem; left: .75rem; z-index: 500;
+      transform: translateY(-180%);
+      background: var(--amber); color: var(--near-black);
+      font-family: var(--font-display); font-size: .75rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+      padding: .7rem 1rem; transition: transform .2s;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: .7rem 2.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(17,26,25,.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,235,202,.05);
+    }
+    .nav-logo {
+      display: block;
+      width: clamp(68px, 6vw, 86px);
+      height: auto;
+      filter: drop-shadow(0 2px 10px rgba(0,0,0,.35));
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--cream); opacity: .55;
+      font-family: var(--font-display); font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+      transition: opacity .22s, color .22s;
+    }
+    .nav-back:hover { opacity: 1; color: var(--amber); }
+    .nav-back svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 9rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(40,66,57,.5) 0%, var(--near-black) 100%);
+      border-bottom: 1px solid rgba(255,235,202,.06);
+    }
+    .page-header-kicker {
+      font-family: var(--font-display); font-size: .62rem; font-weight: 700;
+      letter-spacing: .48em; text-transform: uppercase; color: var(--amber);
+      opacity: .7; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .page-header-kicker::before, .page-header-kicker::after {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--amber); opacity: .4;
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-weight: 700; color: var(--cream);
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+    .page-header-meta {
+      font-family: var(--font-body); font-size: .78rem;
+      color: var(--cream); opacity: .35; letter-spacing: .06em;
+    }
+
+    /* ── CONTENT LAYOUT ── */
+    .content-wrap {
+      max-width: 780px; margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: rgba(40,66,57,.25);
+      border: 1px solid rgba(255,235,202,.07);
+      padding: 1.8rem 2rem;
+      margin-bottom: 3.5rem;
+    }
+    .toc-title {
+      font-family: var(--font-display); font-size: .65rem; font-weight: 700;
+      letter-spacing: .38em; text-transform: uppercase;
+      color: var(--amber); opacity: .75; margin-bottom: 1.1rem;
+    }
+    .toc ol {
+      list-style: none; counter-reset: toc-counter;
+      display: grid; grid-template-columns: 1fr 1fr; gap: .3rem .5rem;
+    }
+    @media (max-width: 540px) { .toc ol { grid-template-columns: 1fr; } }
+    .toc li { counter-increment: toc-counter; }
+    .toc a {
+      color: var(--cream); opacity: .55; text-decoration: none;
+      font-family: var(--font-body); font-size: .8rem; line-height: 1.5;
+      transition: opacity .2s, color .2s;
+      display: flex; align-items: baseline; gap: .5rem;
+    }
+    .toc a::before {
+      content: counter(toc-counter, decimal-leading-zero);
+      font-family: var(--font-display); font-size: .6rem;
+      color: var(--amber); opacity: .6; flex-shrink: 0;
+    }
+    .toc a:hover { opacity: 1; color: var(--amber); }
+
+    /* ── SECTIONS ── */
+    .pp-section {
+      margin-bottom: 3.2rem;
+      padding-bottom: 3.2rem;
+      border-bottom: 1px solid rgba(255,235,202,.06);
+    }
+    .pp-section:last-child { border-bottom: none; }
+
+    .section-num {
+      font-family: var(--font-display); font-size: .58rem; font-weight: 700;
+      letter-spacing: .4em; text-transform: uppercase;
+      color: var(--amber); opacity: .55; margin-bottom: .7rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .section-num::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(255,235,202,.06);
+    }
+
+    .pp-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-weight: 700; color: var(--cream);
+      line-height: 1.2; margin-bottom: 1.1rem;
+    }
+
+    .pp-section p {
+      font-family: var(--font-body);
+      font-size: .92rem; color: var(--cream);
+      opacity: .72; line-height: 1.72;
+      margin-bottom: .85rem;
+    }
+    .pp-section p:last-child { margin-bottom: 0; }
+
+    .pp-section ul, .pp-section ol {
+      padding-left: 1.4rem; margin-bottom: .85rem;
+    }
+    .pp-section li {
+      font-family: var(--font-body); font-size: .92rem;
+      color: var(--cream); opacity: .72; line-height: 1.65;
+      margin-bottom: .35rem;
+    }
+    .pp-section li::marker { color: var(--amber); opacity: .6; }
+
+    .pp-section strong {
+      color: var(--cream-dark); opacity: 1; font-weight: 700;
+    }
+
+    .pp-section a {
+      color: var(--amber); text-decoration: none;
+      border-bottom: 1px solid rgba(247,169,44,.3);
+      transition: border-color .2s, opacity .2s;
+    }
+    .pp-section a:hover { border-color: var(--amber); }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: rgba(247,169,44,.06);
+      border-left: 2px solid var(--amber);
+      padding: 1.1rem 1.4rem;
+      margin: 1.2rem 0;
+    }
+    .highlight-box p { margin-bottom: 0; opacity: .85; }
+
+    /* ── RIGHTS GRID ── */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px;
+      background: rgba(255,235,202,.06);
+      border: 1px solid rgba(255,235,202,.06);
+      margin: 1.2rem 0;
+    }
+    .right-item {
+      background: var(--near-black);
+      padding: 1.1rem 1.2rem;
+    }
+    .right-item-title {
+      font-family: var(--font-display); font-size: .75rem; font-weight: 700;
+      color: var(--amber); letter-spacing: .04em;
+      margin-bottom: .35rem;
+    }
+    .right-item p {
+      font-size: .8rem !important;
+      margin-bottom: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* ── COOKIES TABLE ── */
+    .cookie-table {
+      width: 100%; border-collapse: collapse;
+      margin: 1.2rem 0; font-size: .82rem;
+    }
+    .cookie-table th {
+      font-family: var(--font-display); font-size: .6rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--amber); opacity: .75;
+      padding: .7rem 1rem; text-align: left;
+      border-bottom: 1px solid rgba(255,235,202,.12);
+      background: rgba(40,66,57,.2);
+    }
+    .cookie-table td {
+      padding: .75rem 1rem;
+      border-bottom: 1px solid rgba(255,235,202,.05);
+      color: var(--cream); opacity: .7;
+      vertical-align: top; line-height: 1.5;
+    }
+    .cookie-table tr:last-child td { border-bottom: none; }
+    .cookie-table tr:hover td { background: rgba(255,235,202,.02); }
+    .badge {
+      display: inline-block;
+      font-family: var(--font-display); font-size: .56rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .18rem .5rem;
+      background: rgba(247,169,44,.12);
+      color: var(--amber);
+    }
+    .badge-green {
+      background: rgba(115,146,86,.15);
+      color: var(--sage);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--near-black);
+      border-top: 1px solid rgba(255,235,202,.05);
+      padding: 3rem 2rem 2.5rem; text-align: center;
+    }
+    .ft-logo {
+      display: block;
+      width: clamp(100px, 12vw, 150px);
+      height: auto;
+      margin: 0 auto 1.2rem;
+      opacity: .55;
+      filter: drop-shadow(0 3px 14px rgba(0,0,0,.35));
+    }
+    .ft-copy {
+      font-family: var(--font-body); font-size: .63rem;
+      color: var(--cream); opacity: .18; letter-spacing: .08em;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
+
+  <nav role="navigation" aria-label="Navegação">
+    <a href="./index.html" aria-label="Voltar ao site do Festival Serra do Palmital">
+      <img src="../img/LOGO_FSP-01.png" alt="Festival Serra do Palmital" class="nav-logo">
+    </a>
+    <a href="./index.html" class="nav-back" aria-label="Voltar ao site">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Voltar ao site
+    </a>
+  </nav>
+
+  <header class="page-header">
+    <p class="page-header-kicker">Legal</p>
+    <h1>Política de Privacidade</h1>
+    <p class="page-header-meta">Última atualização: maio de 2026 &nbsp;·&nbsp; LGPD — Lei nº 13.709/2018</p>
+  </header>
+
+  <main id="conteudo-principal">
+    <div class="content-wrap">
+
+      <nav class="toc" aria-label="Sumário">
+        <p class="toc-title">Sumário</p>
+        <ol>
+          <li><a href="#sec1">Quem somos</a></li>
+          <li><a href="#sec2">Dados que coletamos</a></li>
+          <li><a href="#sec3">Finalidade do tratamento</a></li>
+          <li><a href="#sec4">Base legal (LGPD)</a></li>
+          <li><a href="#sec5">Cookies</a></li>
+          <li><a href="#sec6">Compartilhamento de dados</a></li>
+          <li><a href="#sec7">Seus direitos</a></li>
+          <li><a href="#sec8">Retenção e exclusão</a></li>
+          <li><a href="#sec9">Segurança</a></li>
+          <li><a href="#sec10">Contato e DPO</a></li>
+        </ol>
+      </nav>
+
+      <!-- 1 -->
+      <section class="pp-section" id="sec1" aria-labelledby="sec1-title">
+        <p class="section-num">01</p>
+        <h2 id="sec1-title">Quem somos</h2>
+        <p>O <strong>Festival Internacional Serra do Palmital</strong> ("Festival", "nós") é o controlador dos dados pessoais tratados por meio deste site. Nosso evento acontece na Rota do Buquira, Serra do Palmital, Vale do Paraíba — SP, e tem como missão fortalecer a gastronomia, o cinema e o turismo regenerativo da região.</p>
+        <p>Para dúvidas sobre esta Política ou sobre o tratamento dos seus dados, entre em contato pelo e-mail indicado na Seção 10.</p>
+      </section>
+
+      <!-- 2 -->
+      <section class="pp-section" id="sec2" aria-labelledby="sec2-title">
+        <p class="section-num">02</p>
+        <h2 id="sec2-title">Dados que coletamos</h2>
+        <p>Coletamos as seguintes categorias de dados quando você visita nosso site ou interage conosco:</p>
+        <ul>
+          <li><strong>Dados de navegação:</strong> endereço IP (anonimizado), tipo e versão do navegador, sistema operacional, páginas visitadas, tempo de permanência, referência de acesso e resolução de tela — coletados automaticamente via Google Analytics.</li>
+          <li><strong>Dados de contato:</strong> endereço de e-mail, quando fornecido voluntariamente no formulário de cadastro para receber novidades do Festival.</li>
+          <li><strong>Dados de interação:</strong> cliques em botões, rolagem de página e eventos de conversão, rastreados pelo Google Tag Manager para fins de análise e melhoria contínua.</li>
+          <li><strong>Cookies e tecnologias similares:</strong> arquivos de rastreamento armazenados no seu dispositivo (detalhados na Seção 5).</li>
+        </ul>
+        <div class="highlight-box">
+          <p>Não coletamos dados sensíveis (origem racial, convicção religiosa, saúde, biometria, etc.) nem dados de menores de 18 anos de forma intencional. Se identificarmos coleta indevida de dados de menor, excluiremos as informações imediatamente.</p>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="pp-section" id="sec3" aria-labelledby="sec3-title">
+        <p class="section-num">03</p>
+        <h2 id="sec3-title">Finalidade do tratamento</h2>
+        <p>Utilizamos seus dados exclusivamente para as seguintes finalidades:</p>
+        <ul>
+          <li>Analisar o desempenho do site e entender como os visitantes interagem com o conteúdo;</li>
+          <li>Enviar comunicações sobre a programação, ingressos e novidades do Festival, quando você se cadastrar para recebê-las;</li>
+          <li>Melhorar a experiência do usuário, identificando pontos de melhoria na navegação;</li>
+          <li>Cumprir obrigações legais aplicáveis.</li>
+        </ul>
+        <p>Não utilizamos seus dados para tomadas de decisão automatizadas (profiling) com efeitos jurídicos ou significativos.</p>
+      </section>
+
+      <!-- 4 -->
+      <section class="pp-section" id="sec4" aria-labelledby="sec4-title">
+        <p class="section-num">04</p>
+        <h2 id="sec4-title">Base legal (LGPD)</h2>
+        <p>Nos termos da <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018)</strong>, o tratamento dos seus dados é fundamentado nas seguintes bases legais:</p>
+        <ul>
+          <li><strong>Consentimento (Art. 7º, I):</strong> para cookies analíticos e de marketing, coletados somente após sua autorização expressa no banner de cookies.</li>
+          <li><strong>Legítimo interesse (Art. 7º, IX):</strong> para cookies estritamente necessários ao funcionamento do site, que não requerem consentimento prévio.</li>
+          <li><strong>Cumprimento de obrigação legal (Art. 7º, II):</strong> quando exigido por autoridade competente.</li>
+        </ul>
+        <p>Você pode revogar seu consentimento a qualquer momento, clicando em <strong>"Gerenciar cookies"</strong> no rodapé do site ou entrando em contato conosco.</p>
+      </section>
+
+      <!-- 5 -->
+      <section class="pp-section" id="sec5" aria-labelledby="sec5-title">
+        <p class="section-num">05</p>
+        <h2 id="sec5-title">Cookies</h2>
+        <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo para melhorar a experiência de navegação. Utilizamos os seguintes tipos:</p>
+
+        <table class="cookie-table" aria-label="Tabela de cookies utilizados no site">
+          <thead>
+            <tr>
+              <th>Cookie / Serviço</th>
+              <th>Tipo</th>
+              <th>Finalidade</th>
+              <th>Duração</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>cookie_consent</strong></td>
+              <td><span class="badge badge-green">Necessário</span></td>
+              <td>Armazena sua preferência de consentimento para não exibir o banner repetidamente.</td>
+              <td>180 dias</td>
+            </tr>
+            <tr>
+              <td><strong>Google Analytics (_ga, _ga_*)</strong></td>
+              <td><span class="badge">Analítico</span></td>
+              <td>Identifica visitantes únicos e coleta dados de navegação de forma anonimizada para análise de audiência.</td>
+              <td>2 anos</td>
+            </tr>
+            <tr>
+              <td><strong>Google Tag Manager (_gtm_*)</strong></td>
+              <td><span class="badge">Analítico</span></td>
+              <td>Gerencia as tags de rastreamento e disparos de eventos no site.</td>
+              <td>Sessão</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Você pode bloquear ou excluir cookies a qualquer momento pelas configurações do seu navegador. Note que desativar cookies analíticos não prejudica a navegação no site.</p>
+      </section>
+
+      <!-- 6 -->
+      <section class="pp-section" id="sec6" aria-labelledby="sec6-title">
+        <p class="section-num">06</p>
+        <h2 id="sec6-title">Compartilhamento de dados</h2>
+        <p>Compartilhamos seus dados somente com os seguintes operadores e nas condições descritas:</p>
+        <ul>
+          <li><strong>Google LLC</strong> (Analytics e Tag Manager): dados de navegação anonimizados para fins de análise. Google é certificada no <a href="https://www.privacyshield.gov" target="_blank" rel="noopener noreferrer">Data Privacy Framework</a> e adota cláusulas contratuais padrão da UE/EEA.</li>
+          <li><strong>Meta Platforms (Instagram):</strong> ao clicar nos links para nosso perfil do Instagram, você é redirecionado a plataforma de terceiro sujeita à própria política de privacidade.</li>
+        </ul>
+        <p>Não vendemos, alugamos ou cedemos seus dados pessoais a terceiros para fins de marketing.</p>
+        <p>Podemos divulgar dados quando exigido por ordem judicial, autoridade competente ou obrigação legal.</p>
+      </section>
+
+      <!-- 7 -->
+      <section class="pp-section" id="sec7" aria-labelledby="sec7-title">
+        <p class="section-num">07</p>
+        <h2 id="sec7-title">Seus direitos</h2>
+        <p>Nos termos do <strong>Art. 18 da LGPD</strong>, você tem os seguintes direitos em relação aos seus dados pessoais:</p>
+        <div class="rights-grid" role="list">
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Confirmação e Acesso</p>
+            <p>Confirmar se tratamos seus dados e obter cópia dos mesmos.</p>
+          </div>
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Correção</p>
+            <p>Solicitar a atualização de dados incompletos, inexatos ou desatualizados.</p>
+          </div>
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Anonimização ou Exclusão</p>
+            <p>Solicitar bloqueio, anonimização ou eliminação de dados desnecessários ou tratados em desconformidade com a LGPD.</p>
+          </div>
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Portabilidade</p>
+            <p>Receber seus dados em formato estruturado e interoperável.</p>
+          </div>
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Revogação do Consentimento</p>
+            <p>Revogar o consentimento a qualquer momento, sem prejuízo para tratamentos anteriores.</p>
+          </div>
+          <div class="right-item" role="listitem">
+            <p class="right-item-title">Oposição</p>
+            <p>Opor-se ao tratamento realizado com base em legítimo interesse.</p>
+          </div>
+        </div>
+        <p>Para exercer qualquer um desses direitos, entre em contato pelo e-mail indicado na Seção 10. Responderemos em até <strong>15 dias úteis</strong>.</p>
+      </section>
+
+      <!-- 8 -->
+      <section class="pp-section" id="sec8" aria-labelledby="sec8-title">
+        <p class="section-num">08</p>
+        <h2 id="sec8-title">Retenção e exclusão</h2>
+        <p>Mantemos seus dados pelo tempo necessário para cumprir a finalidade que motivou a coleta ou por exigência legal:</p>
+        <ul>
+          <li><strong>Dados analíticos (GA4):</strong> 14 meses por padrão, conforme configuração do Google Analytics.</li>
+          <li><strong>Preferência de cookies:</strong> 180 dias, armazenados localmente no seu navegador.</li>
+          <li><strong>E-mail de cadastro:</strong> até você solicitar a remoção ou por até 2 anos após o último evento realizado.</li>
+        </ul>
+        <p>Após o prazo de retenção, os dados são excluídos ou anonimizados de forma irreversível.</p>
+      </section>
+
+      <!-- 9 -->
+      <section class="pp-section" id="sec9" aria-labelledby="sec9-title">
+        <p class="section-num">09</p>
+        <h2 id="sec9-title">Segurança</h2>
+        <p>Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados contra acesso não autorizado, alteração, divulgação ou destruição, incluindo:</p>
+        <ul>
+          <li>Transmissão criptografada via HTTPS (TLS);</li>
+          <li>Acesso restrito por controle de permissões;</li>
+          <li>Anonimização de endereços IP nas ferramentas de analytics;</li>
+          <li>Uso de Consent Mode v2 do Google para respeitar preferências de rastreamento.</li>
+        </ul>
+        <p>Em caso de incidente de segurança com potencial impacto aos titulares, notificaremos a <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> e os afetados conforme prazos legais.</p>
+      </section>
+
+      <!-- 10 -->
+      <section class="pp-section" id="sec10" aria-labelledby="sec10-title">
+        <p class="section-num">10</p>
+        <h2 id="sec10-title">Contato e Encarregado de Dados (DPO)</h2>
+        <p>Para exercer seus direitos, esclarecer dúvidas ou registrar reclamações relacionadas ao tratamento de dados pessoais, entre em contato com nosso Encarregado de Proteção de Dados:</p>
+        <div class="highlight-box">
+          <p><strong>Festival Internacional Serra do Palmital</strong><br>
+          E-mail: <a href="mailto:privacidade@festivalserradopalmital.com.br">privacidade@festivalserradopalmital.com.br</a><br>
+          Rota do Buquira · Serra do Palmital · Vale do Paraíba — SP · Brasil</p>
+        </div>
+        <p>Você também pode registrar reclamações diretamente na <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> pelo site <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a>.</p>
+        <p style="margin-top:1.5rem; font-size:.82rem; opacity:.5;">Esta Política pode ser atualizada periodicamente. A data de vigência está indicada no topo desta página. O uso contínuo do site após alterações constitui aceitação das novas condições.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <img src="../img/LOGO_FSP-01.png" alt="Festival Internacional da Serra do Palmital" class="ft-logo">
+    <p class="ft-copy">&copy; 2026 Festival Serra do Palmital. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
