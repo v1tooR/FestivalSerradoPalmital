@@ -21,24 +21,30 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="geo.region" content="BR-SP">
   <meta name="geo.placename" content="Serra do Palmital, Vale do Paraíba, São Paulo">
-  <link rel="preload" href="../img/hero1.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preload" href="../img/background-hero.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="../fonts/fonnts.com-Kiln_Sans_Regular.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="../fonts/fonnts.com-Kiln_Sans_Spiked.otf" as="font" type="font/otf" crossorigin>
+  <link rel="canonical" href="https://festivalserradopalmital.com.br/">
   <link rel="icon" href="../img/LOGO_FSP-01.png" type="image/png">
   <link rel="apple-touch-icon" href="../img/LOGO_FSP-01.png">
-  <link rel="image_src" href="../img/hero1.webp">
+  <link rel="image_src" href="https://festivalserradopalmital.com.br/img/background-hero.webp">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Festival Serra do Palmital">
+  <meta property="og:url" content="https://festivalserradopalmital.com.br/">
   <meta property="og:title" content="Festival Serra do Palmital | Gastronomia, Cinema e Cultura">
   <meta property="og:description" content="Cinema ao ar livre, gastronomia com ingredientes da terra, shows e oficinas na Serra do Palmital, Vale do Paraíba, SP.">
-  <meta property="og:image" content="../img/hero1.webp">
+  <meta property="og:image" content="https://festivalserradopalmital.com.br/img/background-hero.webp">
   <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Paisagem da Serra do Palmital, cenário do festival de gastronomia, cinema e cultura.">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@festivalinterserradopalmital">
   <meta name="twitter:title" content="Festival Serra do Palmital | Gastronomia, Cinema e Cultura">
   <meta name="twitter:description" content="Quatro dias de cinema, gastronomia regional, shows, oficinas e natureza no Vale do Paraíba.">
-  <meta name="twitter:image" content="../img/hero1.webp">
+  <meta name="twitter:image" content="https://festivalserradopalmital.com.br/img/background-hero.webp">
 
   <script type="application/ld+json">
   {
@@ -46,36 +52,42 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "#festival-organization",
+        "@id": "https://festivalserradopalmital.com.br/#festival-organization",
         "name": "Festival Serra do Palmital",
-        "url": "./",
+        "url": "https://festivalserradopalmital.com.br/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://festivalserradopalmital.com.br/img/LOGO_FSP-01.png"
+        },
         "sameAs": [
           "https://www.instagram.com/festivalinterserradopalmital/"
         ]
       },
       {
         "@type": "WebSite",
-        "@id": "#website",
+        "@id": "https://festivalserradopalmital.com.br/#website",
         "name": "Festival Serra do Palmital",
-        "url": "./",
+        "url": "https://festivalserradopalmital.com.br/",
         "inLanguage": "pt-BR",
         "publisher": {
-          "@id": "#festival-organization"
+          "@id": "https://festivalserradopalmital.com.br/#festival-organization"
         }
       },
       {
         "@type": "Event",
-        "@id": "#festival-event",
-        "name": "1º Festival Serra do Palmital",
-        "description": "Festival de gastronomia, cinema ao ar livre, shows, oficinas artesanais e experiências na natureza na Serra do Palmital, Vale do Paraíba, SP.",
-        "image": "../img/hero1.webp",
+        "@id": "https://festivalserradopalmital.com.br/#festival-event",
+        "name": "1º Festival Internacional Serra do Palmital",
+        "description": "Festival de gastronomia, cinema ao ar livre, shows, oficinas artesanais e turismo regenerativo na Serra do Palmital, Rota do Buquira, Vale do Paraíba, SP.",
+        "image": "https://festivalserradopalmital.com.br/img/background-hero.webp",
+        "url": "https://festivalserradopalmital.com.br/",
         "startDate": "2026-07-02",
         "endDate": "2026-07-05",
+        "duration": "P4D",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
         "location": {
           "@type": "Place",
-          "name": "Serra do Palmital",
+          "name": "Serra do Palmital — Rota do Buquira",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Vale do Paraíba",
@@ -84,16 +96,21 @@
           }
         },
         "organizer": {
-          "@id": "#festival-organization"
+          "@id": "https://festivalserradopalmital.com.br/#festival-organization"
         },
-        "keywords": [
-          "gastronomia regional",
-          "cinema ao ar livre",
-          "Serra do Palmital",
-          "Vale do Paraíba",
-          "cultura",
-          "natureza"
-        ]
+        "about": [
+          "Gastronomia Regional",
+          "Cinema ao Ar Livre",
+          "Shows Musicais",
+          "Turismo Rural",
+          "Cultura Caipira"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.instagram.com/festivalinterserradopalmital/",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2026-01-01"
+        }
       }
     ]
   }
@@ -836,24 +853,6 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTL2DZ2S"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1289022213444012');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1289022213444012&ev=PageView&noscript=1"
-  /></noscript>
-  <!-- End Meta Pixel Code -->
   <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
 
   <div id="progressBar" aria-hidden="true"></div>
@@ -952,6 +951,7 @@
           <img src="../img/soap.svg" class="sdeco fc" aria-hidden="true"
                style="z-index:1;bottom:-8%;right:3%;width:min(6vw,58px);opacity:.14;transform:scaleX(-1)">
 
+          <h1 id="titulo-festival" class="visually-hidden">1º Festival Internacional Serra do Palmital — Gastronomia, Cinema e Cultura no Vale do Paraíba</h1>
           <div class="hero-content" id="heroContent">
             <img src="../img/LOGO_FSP-01.png" alt="1º Festival Serra do Palmital" class="hero-logo a1">
             <p class="hero-dates a2">02 &mdash; 05 JUL · 2026</p>
