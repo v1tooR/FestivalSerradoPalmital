@@ -285,6 +285,19 @@
       opacity: 0; animation: fadeIn 1s ease 2s both;
     }
     .nav-btn:hover { background: var(--caramel); transform: translateY(-1px); }
+    .nav-link {
+      color: rgba(255,235,202,.82);
+      font-family: var(--font-display); font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+      padding: .3rem 0;
+      border-bottom: 1px solid transparent;
+      transition: color .2s, border-color .2s;
+      opacity: 0; animation: fadeIn 1s ease 2s both;
+    }
+    .nav-link:hover { color: var(--amber); border-bottom-color: var(--amber); }
+    .nav-actions {
+      display: flex; align-items: center; gap: 1.6rem;
+    }
 
     /* ── CHAPTER INDICATOR — horizontal dots, bottom center ── */
     .chap-nav {
@@ -314,7 +327,7 @@
     ══════════════════════════════════════════════ */
     #scrollTrack {
       position: relative;
-      height: 700vh; /* vertical scroll runway for 4 scenes */
+      height: 500vh; /* vertical scroll runway for 4 scenes */
     }
     #scrollStage {
       position: sticky; top: 0; height: 100vh; overflow: hidden;
@@ -883,6 +896,152 @@
     }
 
     /* ══════════════════════════════════════════════
+       PROGRAMAÇÃO
+    ══════════════════════════════════════════════ */
+    .prog-section {
+      background: var(--near-black);
+      padding: 5rem 2rem 5.5rem;
+      border-top: 1px solid rgba(255,235,202,.06);
+    }
+    .prog-inner { max-width: 860px; margin: 0 auto; }
+
+    /* Header */
+    .prog-header { text-align: center; margin-bottom: 3.2rem; }
+    .prog-kicker {
+      font-family: var(--font-display); font-size: .62rem; font-weight: 700;
+      letter-spacing: .46em; text-transform: uppercase; color: var(--amber);
+      opacity: .65; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .prog-kicker::before, .prog-kicker::after {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--amber); opacity: .35;
+    }
+    .prog-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700; color: var(--cream); line-height: 1.1;
+      margin-bottom: .7rem;
+    }
+    .prog-sub {
+      font-family: var(--font-body); font-size: .88rem;
+      color: var(--cream); opacity: .35; letter-spacing: .04em;
+    }
+
+    /* Day tabs */
+    .prog-tabs-scroll { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+    .prog-tabs-scroll::-webkit-scrollbar { display: none; }
+    .prog-tabs {
+      display: flex; width: max-content; min-width: 100%;
+      border-bottom: 1px solid rgba(255,235,202,.08);
+    }
+    .prog-tab {
+      flex: 1; min-width: 130px;
+      background: none; border: none; cursor: pointer;
+      padding: 1.1rem 1rem 1rem;
+      display: flex; flex-direction: column; align-items: center; gap: .18rem;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: border-color .25s;
+      position: relative;
+    }
+    .prog-tab-date {
+      font-family: var(--font-display); font-size: 1.55rem; font-weight: 700;
+      color: var(--cream); opacity: .22; line-height: 1;
+      transition: opacity .25s, color .25s;
+    }
+    .prog-tab-label {
+      font-family: var(--font-display); font-size: .56rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--cream); opacity: .2;
+      transition: opacity .25s, color .25s;
+    }
+    .prog-tab:hover .prog-tab-date  { opacity: .55; }
+    .prog-tab:hover .prog-tab-label { opacity: .45; }
+    .prog-tab.active .prog-tab-date  { opacity: 1; color: var(--amber); }
+    .prog-tab.active .prog-tab-label { opacity: .7; color: var(--amber); }
+    .prog-tab.active { border-bottom-color: var(--amber); }
+
+    /* Theme strip */
+    .prog-theme-bar {
+      padding: 1.1rem 0 2rem;
+      font-family: var(--font-display); font-size: .8rem; font-style: italic;
+      color: var(--cream); opacity: .32; letter-spacing: .03em;
+    }
+
+    /* Panels */
+    .prog-panel { display: none; }
+    .prog-panel.active { display: block; animation: fadeIn .3s ease both; }
+
+    /* Event list */
+    .prog-list { display: flex; flex-direction: column; }
+
+    /* Single event */
+    .prog-item {
+      display: grid;
+      grid-template-columns: 3.8rem 1fr;
+      gap: 0 1.4rem;
+      padding: .72rem 0;
+      border-bottom: 1px solid rgba(255,235,202,.04);
+      align-items: center;
+    }
+    .prog-item:last-child { border-bottom: none; }
+
+    /* Destaque events */
+    .prog-item.destaque {
+      grid-template-columns: 3.8rem 1fr;
+      padding: .9rem 1.1rem;
+      margin: .55rem -1.1rem;
+      border-bottom: none;
+      background: rgba(255,235,202,.025);
+    }
+    .prog-item.destaque-show  { border-left: 2px solid var(--amber); }
+    .prog-item.destaque-gala  { border-left: 2px solid var(--teal); }
+    .prog-item.destaque-espec { border-left: 2px solid var(--burnt-orange); }
+
+    .prog-time {
+      font-family: var(--font-display); font-size: .75rem; font-weight: 700;
+      color: var(--amber); opacity: .55; letter-spacing: .04em;
+      align-self: start; padding-top: .12rem;
+    }
+    .prog-item.destaque .prog-time { opacity: .8; }
+
+    .prog-info { display: flex; flex-direction: column; gap: .3rem; }
+    .prog-info-row { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+
+    /* Category badge */
+    .prog-tag {
+      font-family: var(--font-display); font-size: .52rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      padding: .12rem .45rem; flex-shrink: 0;
+    }
+    .tag-cinema   { background: rgba(19,115,140,.18); color: var(--teal); }
+    .tag-gastro   { background: rgba(209,148,65,.14);  color: var(--caramel); }
+    .tag-show     { background: rgba(247,169,44,.14);  color: var(--amber); }
+    .tag-cultural { background: rgba(115,146,86,.16);  color: var(--sage); }
+    .tag-especial { background: rgba(215,115,31,.16);  color: var(--burnt-orange); }
+
+    .prog-event-title {
+      font-family: var(--font-body); font-size: .87rem;
+      color: var(--cream); opacity: .65; line-height: 1.4;
+    }
+    .prog-item.destaque .prog-event-title {
+      font-family: var(--font-display); font-size: .95rem;
+      opacity: .92; color: var(--cream);
+    }
+
+    /* Mobile */
+    @media (max-width: 580px) {
+      .prog-section { padding: 3.8rem 1.3rem 4rem; }
+      .prog-tab { min-width: 100px; padding: .9rem .7rem .85rem; }
+      .prog-tab-date { font-size: 1.25rem; }
+      .prog-tab-label { font-size: .5rem; letter-spacing: .2em; }
+      .prog-item { grid-template-columns: 3.2rem 1fr; gap: 0 1rem; padding: .65rem 0; }
+      .prog-item.destaque { margin: .5rem -.8rem; padding: .8rem .8rem; }
+      .prog-event-title { font-size: .82rem; }
+      .prog-item.destaque .prog-event-title { font-size: .88rem; }
+    }
+
+    /* ══════════════════════════════════════════════
        COOKIE CONSENT BANNER
     ══════════════════════════════════════════════ */
     #cookieBanner {
@@ -1001,7 +1160,10 @@
     <span class="nav-brand" aria-label="Festival Internacional da Serra do Palmital">
       <img src="../img/LOGO_FSP-01.png" alt="" class="nav-logo" aria-hidden="true">
     </span>
-    <a href="https://www.instagram.com/festivalinterserradopalmital/" class="nav-btn" aria-label="Saiba mais sobre o Festival Serra do Palmital no Instagram">Saiba mais</a>
+    <div class="nav-actions">
+      <a href="#programacao" class="nav-link">Programação</a>
+      <a href="https://www.instagram.com/festivalinterserradopalmital/" class="nav-btn" aria-label="Saiba mais sobre o Festival Serra do Palmital no Instagram">Saiba mais</a>
+    </div>
   </nav>
 
   <!-- CHAPTER DOTS — horizontal, bottom center -->
@@ -1261,6 +1423,234 @@
     </div><!-- /scrollStage -->
   </div><!-- /scrollTrack -->
 
+  <!-- ══ PROGRAMAÇÃO ══ -->
+  <section class="prog-section" id="programacao" aria-labelledby="prog-heading-title">
+    <div class="prog-inner">
+
+      <div class="prog-header">
+        <p class="prog-kicker">Programação</p>
+        <h2 class="prog-heading" id="prog-heading-title">4 dias de cinema,<br>gastronomia e cultura</h2>
+        <p class="prog-sub">02 — 05 de julho de 2026 · Serra do Palmital, Vale do Paraíba</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="prog-tabs-scroll" role="tablist" aria-label="Dias do festival">
+        <div class="prog-tabs">
+          <button class="prog-tab active" data-tab="0" role="tab" aria-selected="true" aria-controls="prog-day-0">
+            <span class="prog-tab-date">02</span>
+            <span class="prog-tab-label">Qui · Jul</span>
+          </button>
+          <button class="prog-tab" data-tab="1" role="tab" aria-selected="false" aria-controls="prog-day-1">
+            <span class="prog-tab-date">03</span>
+            <span class="prog-tab-label">Sex · Jul</span>
+          </button>
+          <button class="prog-tab" data-tab="2" role="tab" aria-selected="false" aria-controls="prog-day-2">
+            <span class="prog-tab-date">04</span>
+            <span class="prog-tab-label">Sáb · Jul</span>
+          </button>
+          <button class="prog-tab" data-tab="3" role="tab" aria-selected="false" aria-controls="prog-day-3">
+            <span class="prog-tab-date">05</span>
+            <span class="prog-tab-label">Dom · Jul</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── DIA 02 · QUINTA-FEIRA ── -->
+      <div class="prog-panel active" id="prog-day-0" role="tabpanel">
+        <p class="prog-theme-bar">Tema do dia — Infância, Memória e Aberturas</p>
+        <div class="prog-list">
+          <div class="prog-item">
+            <span class="prog-time">9h00</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Maurício de Sousa: Cinema para a Escola</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">10h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Maurício de Sousa: Cinema para a Escola (Inclusão)</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">12h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">13h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Jovens Olhares (Escola/Cinema)</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">15h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cultural">Cultural</span></div>
+            <p class="prog-event-title">Sons do Palmital (Maracatu)</p></div>
+          </div>
+          <div class="prog-item destaque destaque-espec">
+            <span class="prog-time">16h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Especial</span></div>
+            <p class="prog-event-title">Cerimônia de Abertura Oficial</p></div>
+          </div>
+          <div class="prog-item destaque destaque-gala">
+            <span class="prog-time">18h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Sessão de Gala</span></div>
+            <p class="prog-event-title">"Me Chama Que Eu Vou"</p></div>
+          </div>
+          <div class="prog-item destaque destaque-show">
+            <span class="prog-time">20h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show</span></div>
+            <p class="prog-event-title">Show de Abertura: Sidney Magal</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIA 03 · SEXTA-FEIRA ── -->
+      <div class="prog-panel" id="prog-day-1" role="tabpanel">
+        <p class="prog-theme-bar">Tema do dia — Homenagens e Clássicos Brasileiros</p>
+        <div class="prog-list">
+          <div class="prog-item">
+            <span class="prog-time">9h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Escola: Cinema e Formação</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">10h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Escola: Cinema e Formação (Inclusão)</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">12h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">13h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Escola: Olhares do Futuro</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">16h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Cinema 60+</p></div>
+          </div>
+          <div class="prog-item destaque destaque-espec">
+            <span class="prog-time">18h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Homenagem</span></div>
+            <p class="prog-event-title">Tributo a Matheus Nachtergaele</p></div>
+          </div>
+          <div class="prog-item destaque destaque-gala">
+            <span class="prog-time">19h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Clássicos do Brasil</span></div>
+            <p class="prog-event-title">"Tapete Vermelho"</p></div>
+          </div>
+          <div class="prog-item destaque destaque-show">
+            <span class="prog-time">20h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show</span></div>
+            <p class="prog-event-title">Sabores da Noite + Show Local</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIA 04 · SÁBADO ── -->
+      <div class="prog-panel" id="prog-day-2" role="tabpanel">
+        <p class="prog-theme-bar">Tema do dia — Humor, Cultura Popular e Encontros</p>
+        <div class="prog-list">
+          <div class="prog-item">
+            <span class="prog-time">9h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Infantil: Cinema e Comunidade</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">11h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">12h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">14h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Escola: Imagens que Transformam</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">15h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cultural">Cultural</span></div>
+            <p class="prog-event-title">Sons do Palmital</p></div>
+          </div>
+          <div class="prog-item destaque destaque-espec">
+            <span class="prog-time">16h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Encontro</span></div>
+            <p class="prog-event-title">Encontro com Luiz Miranda</p></div>
+          </div>
+          <div class="prog-item destaque destaque-gala">
+            <span class="prog-time">17h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Sessão Especial</span></div>
+            <p class="prog-event-title">"O Auto da Compadecida 2"</p></div>
+          </div>
+          <div class="prog-item destaque destaque-show">
+            <span class="prog-time">20h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show</span></div>
+            <p class="prog-event-title">Sabores da Noite + Show Local</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIA 05 · DOMINGO ── -->
+      <div class="prog-panel" id="prog-day-3" role="tabpanel">
+        <p class="prog-theme-bar">Tema do dia — Celebração, Futebol e Encerramento</p>
+        <div class="prog-list">
+          <div class="prog-item">
+            <span class="prog-time">9h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Infantil: Cinema e Comunidade</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">11h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">12h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-gastro">Gastronomia</span></div>
+            <p class="prog-event-title">Sabores da Serra + Música da Terra</p></div>
+          </div>
+          <div class="prog-item destaque destaque-gala">
+            <span class="prog-time">15h30</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Encerramento</span></div>
+            <p class="prog-event-title">"Um Broto Legal"</p></div>
+          </div>
+          <div class="prog-item">
+            <span class="prog-time">17h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
+            <p class="prog-event-title">Sessão Torcida Brasil</p></div>
+          </div>
+          <div class="prog-item destaque destaque-espec">
+            <span class="prog-time">19h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Encontro</span></div>
+            <p class="prog-event-title">Encontro com convidados — Luiz Miranda, Matheus Nachtergaele, cineastas, atores e personalidades da gastronomia e turismo local</p></div>
+          </div>
+          <div class="prog-item destaque destaque-show">
+            <span class="prog-time">20h</span>
+            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show de Encerramento</span></div>
+            <p class="prog-event-title">Renato Teixeira</p></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- INFO BAND (normal scroll, after track) -->
   <div class="info-band" role="complementary" aria-label="Informações rápidas do Festival Serra do Palmital">
     <div class="info-it"><p class="info-lbl">Data</p><p class="info-val">02 — 05 Jul · 2026</p></div>
@@ -1380,17 +1770,16 @@
     /* ════════════════════════════════════════
        HORIZONTAL SCROLL ENGINE
        ────────────────────────────────────────
-       700vh track → 600vh of extra scroll
-       4 scenes, each dwell = 20% of p (120vh)
-       3 transitions,  each = 6.67% (40vh)
+       500vh track → 400vh of extra scroll
+       3 transitions, each = 7.5% of p (30vh)
 
-       D1: 0.000–0.200  (scene 1 dwell)
-       T1: 0.200–0.267  (slide to scene 2)
-       D2: 0.267–0.467  (scene 2 dwell)
-       T2: 0.467–0.533  (slide to scene 3)
-       D3: 0.533–0.733  (scene 3 dwell)
-       T3: 0.733–0.800  (slide to scene 4)
-       D4: 0.800–1.000  (scene 4 dwell)
+       D1: 0.000–0.150  (scene 1 dwell, 60vh)
+       T1: 0.150–0.225  (slide to scene 2, 30vh)
+       D2: 0.225–0.425  (scene 2 dwell, 80vh)
+       T2: 0.425–0.500  (slide to scene 3, 30vh)
+       D3: 0.500–0.700  (scene 3 dwell, 80vh)
+       T3: 0.700–0.775  (slide to scene 4, 30vh)
+       D4: 0.775–1.000  (scene 4 dwell, 90vh)
     ════════════════════════════════════════ */
 
     let lerpX  = 0; // current lerped position
@@ -1410,30 +1799,30 @@
 
     function computeTargetX(p) {
       const vw = window.innerWidth;
-      if (p <= 0.200) return 0;
-      if (p <= 0.267) return -ease(p, 0.200, 0.267) * vw;
-      if (p <= 0.467) return -vw;
-      if (p <= 0.533) return -(1 + ease(p, 0.467, 0.533)) * vw;
-      if (p <= 0.733) return -2 * vw;
-      if (p <= 0.800) return -(2 + ease(p, 0.733, 0.800)) * vw;
+      if (p <= 0.150) return 0;
+      if (p <= 0.225) return -ease(p, 0.150, 0.225) * vw;
+      if (p <= 0.425) return -vw;
+      if (p <= 0.500) return -(1 + ease(p, 0.425, 0.500)) * vw;
+      if (p <= 0.700) return -2 * vw;
+      if (p <= 0.775) return -(2 + ease(p, 0.700, 0.775)) * vw;
       return -3 * vw;
     }
 
     function activeChap(p) {
-      if (p < 0.267) return 0;
-      if (p < 0.533) return 1;
-      if (p < 0.800) return 2;
+      if (p < 0.225) return 0;
+      if (p < 0.500) return 1;
+      if (p < 0.775) return 2;
       return 3;
     }
 
     function updateReveal(p) {
       /* ─ Scene 1 exit (hero slides & fades left) ─ */
-      const hOut = ease(p, 0.13, 0.20);
+      const hOut = ease(p, 0.08, 0.150);
       heroContent.style.opacity   = 1 - hOut;
       heroContent.style.transform = 'translateX(' + (-hOut * 55) + 'px)';
 
       /* ─ Scene 2 reveals (local progress within D2) ─ */
-      const p2 = ss(clamp((p - 0.267) / 0.200, 0, 1));
+      const p2 = ss(clamp((p - 0.225) / 0.200, 0, 1));
       set(pilaresHeader, ease(p2,0.00,0.18), (1-ease(p2,0.00,0.18))*32);
       const pt = [[0.12,0.30],[0.28,0.46],[0.44,0.62],[0.60,0.78]];
       pilars.forEach((el,i) => {
@@ -1443,7 +1832,7 @@
       });
 
       /* ─ Scene 3 reveals (local progress within D3) ─ */
-      const p3 = ss(clamp((p - 0.533) / 0.200, 0, 1));
+      const p3 = ss(clamp((p - 0.500) / 0.200, 0, 1));
       set(chapLabel,  ease(p3, 0.00, 0.20), (1-ease(p3,0.00,0.20))*28);
       set(sl0,        ease(p3, 0.05, 0.25), (1-ease(p3,0.05,0.25))*38);
       set(sl1,        ease(p3, 0.22, 0.42), (1-ease(p3,0.22,0.42))*38);
@@ -1452,7 +1841,7 @@
       set(storyBody,  ease(p3, 0.32, 0.52), (1-ease(p3,0.32,0.52))*22);
 
       /* ─ Scene 4 reveals (local progress within D4) ─ */
-      const p4 = ss(clamp((p - 0.800) / 0.200, 0, 1));
+      const p4 = ss(clamp((p - 0.775) / 0.200, 0, 1));
       const seq = [
         [ctaKicker, 0.00, 0.22], [ctaTitle, 0.10, 0.32],
         [ctaSub,    0.22, 0.42], [ctaBtn,   0.38, 0.58],
@@ -1540,6 +1929,30 @@
         window.scrollTo({ top, behavior: 'smooth' });
       });
     });
+
+    /* ════════════════════════════════════════
+       PROGRAMAÇÃO — TAB SWITCHING
+    ════════════════════════════════════════ */
+    (function () {
+      var tabs   = document.querySelectorAll('.prog-tab');
+      var panels = document.querySelectorAll('.prog-panel');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var idx = +tab.dataset.tab;
+
+          tabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          panels.forEach(function (p) { p.classList.remove('active'); });
+
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          panels[idx].classList.add('active');
+        });
+      });
+    })();
 
     /* ════════════════════════════════════════
        COOKIE CONSENT BANNER

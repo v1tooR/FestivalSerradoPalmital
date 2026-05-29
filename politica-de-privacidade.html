@@ -39,14 +39,11 @@
       --amber:        #F7A92C;
       --burnt-orange: #D7731F;
       --rust:         #9A4A1C;
-      --teal:         #13738C;
       --forest:       #284239;
-      --forest-mid:   #3a5e52;
       --khaki:        #604E29;
       --near-black:   #111A19;
-
-      --font-display:   'Kiln Sans Spiked', Georgia, serif;
-      --font-body:      'Kiln Sans', system-ui, sans-serif;
+      --font-display: 'Kiln Sans Spiked', Georgia, serif;
+      --font-body:    'Kiln Sans', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -71,7 +68,7 @@
     .skip-link:focus { transform: translateY(0); }
 
     /* ── NAV ── */
-    nav {
+    .site-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       padding: .7rem 2.2rem;
       display: flex; justify-content: space-between; align-items: center;
@@ -82,236 +79,267 @@
     }
     .nav-logo {
       display: block;
-      width: clamp(68px, 6vw, 86px);
+      width: clamp(64px, 5.5vw, 82px);
       height: auto;
       filter: drop-shadow(0 2px 10px rgba(0,0,0,.35));
     }
     .nav-back {
-      display: inline-flex; align-items: center; gap: .5rem;
-      color: var(--cream); opacity: .55;
-      font-family: var(--font-display); font-size: .72rem; font-weight: 700;
+      display: inline-flex; align-items: center; gap: .45rem;
+      color: var(--cream); opacity: .45;
+      font-family: var(--font-display); font-size: .68rem; font-weight: 700;
       letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
       transition: opacity .22s, color .22s;
     }
     .nav-back:hover { opacity: 1; color: var(--amber); }
-    .nav-back svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+    .nav-back svg { width: 13px; height: 13px; flex-shrink: 0; }
 
     /* ── PAGE HEADER ── */
     .page-header {
-      padding: 9rem 2rem 4rem;
+      padding: 8.5rem 2rem 3.5rem;
       text-align: center;
-      background: linear-gradient(to bottom, rgba(40,66,57,.5) 0%, var(--near-black) 100%);
+      background: linear-gradient(to bottom, rgba(40,66,57,.45) 0%, var(--near-black) 100%);
       border-bottom: 1px solid rgba(255,235,202,.06);
     }
     .page-header-kicker {
-      font-family: var(--font-display); font-size: .62rem; font-weight: 700;
+      font-family: var(--font-display); font-size: .6rem; font-weight: 700;
       letter-spacing: .48em; text-transform: uppercase; color: var(--amber);
-      opacity: .7; margin-bottom: 1rem;
+      opacity: .65; margin-bottom: .9rem;
       display: flex; align-items: center; justify-content: center; gap: 1rem;
     }
     .page-header-kicker::before, .page-header-kicker::after {
-      content: ''; display: block; width: 28px; height: 1px;
+      content: ''; display: block; width: 26px; height: 1px;
       background: var(--amber); opacity: .4;
     }
     .page-header h1 {
       font-family: var(--font-display);
-      font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+      font-size: clamp(1.8rem, 4vw, 2.9rem);
       font-weight: 700; color: var(--cream);
-      line-height: 1.1; margin-bottom: 1rem;
+      line-height: 1.1; margin-bottom: .9rem;
     }
     .page-header-meta {
-      font-family: var(--font-body); font-size: .78rem;
-      color: var(--cream); opacity: .35; letter-spacing: .06em;
+      font-family: var(--font-body); font-size: .76rem;
+      color: var(--cream); opacity: .32; letter-spacing: .06em;
     }
 
-    /* ── CONTENT LAYOUT ── */
-    .content-wrap {
-      max-width: 780px; margin: 0 auto;
-      padding: 4rem 2rem 6rem;
+    /* ════════════════════════════════════════
+       TWO-COLUMN LAYOUT
+    ════════════════════════════════════════ */
+    .layout {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 4rem 2rem 7rem;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 0 4rem;
+      align-items: start;
     }
 
-    /* ── TOC ── */
-    .toc {
-      background: rgba(40,66,57,.25);
-      border: 1px solid rgba(255,235,202,.07);
-      padding: 1.8rem 2rem;
-      margin-bottom: 3.5rem;
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: sticky;
+      top: 8rem;
+      max-height: calc(100vh - 9rem);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .toc-title {
-      font-family: var(--font-display); font-size: .65rem; font-weight: 700;
-      letter-spacing: .38em; text-transform: uppercase;
-      color: var(--amber); opacity: .75; margin-bottom: 1.1rem;
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    .sidebar-back {
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: transparent;
+      color: var(--cream); opacity: .55;
+      font-family: var(--font-display); font-size: .68rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(255,235,202,.15);
+      padding: .65rem 1rem;
+      margin-bottom: 2rem;
+      transition: opacity .22s, border-color .22s, color .22s;
     }
-    .toc ol {
-      list-style: none; counter-reset: toc-counter;
-      display: grid; grid-template-columns: 1fr 1fr; gap: .3rem .5rem;
+    .sidebar-back:hover {
+      opacity: 1;
+      color: var(--amber);
+      border-color: rgba(247,169,44,.4);
     }
-    @media (max-width: 540px) { .toc ol { grid-template-columns: 1fr; } }
-    .toc li { counter-increment: toc-counter; }
-    .toc a {
-      color: var(--cream); opacity: .55; text-decoration: none;
-      font-family: var(--font-body); font-size: .8rem; line-height: 1.5;
+    .sidebar-back svg {
+      width: 13px; height: 13px; flex-shrink: 0;
+      transition: transform .22s;
+    }
+    .sidebar-back:hover svg { transform: translateX(-3px); }
+
+    .toc-label {
+      font-family: var(--font-display); font-size: .56rem; font-weight: 700;
+      letter-spacing: .4em; text-transform: uppercase;
+      color: var(--amber); opacity: .5; margin-bottom: .9rem;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+    .toc-list li { position: relative; }
+
+    .toc-list a {
+      display: flex; align-items: baseline; gap: .55rem;
+      padding: .38rem 0;
+      color: var(--cream); opacity: .38;
+      font-family: var(--font-body); font-size: .78rem; line-height: 1.4;
+      text-decoration: none;
       transition: opacity .2s, color .2s;
-      display: flex; align-items: baseline; gap: .5rem;
     }
-    .toc a::before {
-      content: counter(toc-counter, decimal-leading-zero);
-      font-family: var(--font-display); font-size: .6rem;
-      color: var(--amber); opacity: .6; flex-shrink: 0;
+    .toc-list a .toc-num {
+      font-family: var(--font-display); font-size: .56rem;
+      color: var(--amber); opacity: .5; flex-shrink: 0;
+      transition: opacity .2s;
     }
-    .toc a:hover { opacity: 1; color: var(--amber); }
+    .toc-list a:hover {
+      opacity: .75;
+      color: var(--cream);
+    }
+    .toc-list a.active {
+      opacity: 1;
+      color: var(--amber);
+    }
+    .toc-list a.active .toc-num { opacity: 1; }
 
-    /* ── SECTIONS ── */
+    /* ── CONTENT ── */
+    .pp-content { min-width: 0; }
+
     .pp-section {
       margin-bottom: 3.2rem;
       padding-bottom: 3.2rem;
       border-bottom: 1px solid rgba(255,235,202,.06);
     }
-    .pp-section:last-child { border-bottom: none; }
+    .pp-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
     .section-num {
-      font-family: var(--font-display); font-size: .58rem; font-weight: 700;
+      font-family: var(--font-display); font-size: .56rem; font-weight: 700;
       letter-spacing: .4em; text-transform: uppercase;
-      color: var(--amber); opacity: .55; margin-bottom: .7rem;
+      color: var(--amber); opacity: .45; margin-bottom: .65rem;
       display: flex; align-items: center; gap: .7rem;
     }
     .section-num::after {
       content: ''; flex: 1; height: 1px;
-      background: rgba(255,235,202,.06);
+      background: rgba(255,235,202,.05);
     }
 
     .pp-section h2 {
       font-family: var(--font-display);
-      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
       font-weight: 700; color: var(--cream);
       line-height: 1.2; margin-bottom: 1.1rem;
     }
-
     .pp-section p {
-      font-family: var(--font-body);
-      font-size: .92rem; color: var(--cream);
-      opacity: .72; line-height: 1.72;
-      margin-bottom: .85rem;
+      font-size: .91rem; color: var(--cream);
+      opacity: .7; line-height: 1.74; margin-bottom: .85rem;
     }
     .pp-section p:last-child { margin-bottom: 0; }
-
     .pp-section ul, .pp-section ol {
       padding-left: 1.4rem; margin-bottom: .85rem;
     }
     .pp-section li {
-      font-family: var(--font-body); font-size: .92rem;
-      color: var(--cream); opacity: .72; line-height: 1.65;
-      margin-bottom: .35rem;
+      font-size: .91rem; color: var(--cream); opacity: .7;
+      line-height: 1.65; margin-bottom: .35rem;
     }
     .pp-section li::marker { color: var(--amber); opacity: .6; }
-
-    .pp-section strong {
-      color: var(--cream-dark); opacity: 1; font-weight: 700;
-    }
-
+    .pp-section strong { color: var(--cream-dark); opacity: 1; font-weight: 700; }
     .pp-section a {
       color: var(--amber); text-decoration: none;
-      border-bottom: 1px solid rgba(247,169,44,.3);
-      transition: border-color .2s, opacity .2s;
+      border-bottom: 1px solid rgba(247,169,44,.28);
+      transition: border-color .2s;
     }
     .pp-section a:hover { border-color: var(--amber); }
 
     /* ── HIGHLIGHT BOX ── */
     .highlight-box {
-      background: rgba(247,169,44,.06);
-      border-left: 2px solid var(--amber);
-      padding: 1.1rem 1.4rem;
-      margin: 1.2rem 0;
+      background: rgba(247,169,44,.05);
+      border-left: 2px solid rgba(247,169,44,.45);
+      padding: 1rem 1.3rem;
+      margin: 1.1rem 0;
     }
-    .highlight-box p { margin-bottom: 0; opacity: .85; }
+    .highlight-box p { margin-bottom: 0; opacity: .82; }
 
     /* ── RIGHTS GRID ── */
     .rights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1px;
-      background: rgba(255,235,202,.06);
-      border: 1px solid rgba(255,235,202,.06);
-      margin: 1.2rem 0;
+      background: rgba(255,235,202,.05);
+      border: 1px solid rgba(255,235,202,.05);
+      margin: 1.1rem 0;
     }
-    .right-item {
-      background: var(--near-black);
-      padding: 1.1rem 1.2rem;
-    }
+    .right-item { background: var(--near-black); padding: 1rem 1.1rem; }
     .right-item-title {
-      font-family: var(--font-display); font-size: .75rem; font-weight: 700;
-      color: var(--amber); letter-spacing: .04em;
-      margin-bottom: .35rem;
+      font-family: var(--font-display); font-size: .73rem; font-weight: 700;
+      color: var(--amber); letter-spacing: .04em; margin-bottom: .3rem;
     }
-    .right-item p {
-      font-size: .8rem !important;
-      margin-bottom: 0 !important;
-      line-height: 1.5 !important;
-    }
+    .right-item p { font-size: .8rem !important; margin-bottom: 0 !important; line-height: 1.5 !important; }
 
     /* ── COOKIES TABLE ── */
-    .cookie-table {
-      width: 100%; border-collapse: collapse;
-      margin: 1.2rem 0; font-size: .82rem;
-    }
+    .cookie-table { width: 100%; border-collapse: collapse; margin: 1.1rem 0; font-size: .81rem; }
     .cookie-table th {
-      font-family: var(--font-display); font-size: .6rem; font-weight: 700;
+      font-family: var(--font-display); font-size: .58rem; font-weight: 700;
       letter-spacing: .22em; text-transform: uppercase;
-      color: var(--amber); opacity: .75;
-      padding: .7rem 1rem; text-align: left;
-      border-bottom: 1px solid rgba(255,235,202,.12);
-      background: rgba(40,66,57,.2);
+      color: var(--amber); opacity: .7;
+      padding: .65rem .9rem; text-align: left;
+      border-bottom: 1px solid rgba(255,235,202,.1);
+      background: rgba(40,66,57,.18);
     }
     .cookie-table td {
-      padding: .75rem 1rem;
+      padding: .7rem .9rem;
       border-bottom: 1px solid rgba(255,235,202,.05);
-      color: var(--cream); opacity: .7;
+      color: var(--cream); opacity: .68;
       vertical-align: top; line-height: 1.5;
     }
     .cookie-table tr:last-child td { border-bottom: none; }
-    .cookie-table tr:hover td { background: rgba(255,235,202,.02); }
     .badge {
       display: inline-block;
-      font-family: var(--font-display); font-size: .56rem; font-weight: 700;
+      font-family: var(--font-display); font-size: .54rem; font-weight: 700;
       letter-spacing: .1em; text-transform: uppercase;
-      padding: .18rem .5rem;
-      background: rgba(247,169,44,.12);
-      color: var(--amber);
+      padding: .15rem .45rem;
+      background: rgba(247,169,44,.1); color: var(--amber);
     }
-    .badge-green {
-      background: rgba(115,146,86,.15);
-      color: var(--sage);
-    }
+    .badge-green { background: rgba(115,146,86,.14); color: #8cb869; }
 
     /* ── FOOTER ── */
     footer {
       background: var(--near-black);
       border-top: 1px solid rgba(255,235,202,.05);
-      padding: 3rem 2rem 2.5rem; text-align: center;
+      padding: 2.8rem 2rem 2.2rem; text-align: center;
     }
     .ft-logo {
-      display: block;
-      width: clamp(100px, 12vw, 150px);
-      height: auto;
-      margin: 0 auto 1.2rem;
-      opacity: .55;
-      filter: drop-shadow(0 3px 14px rgba(0,0,0,.35));
+      display: block; width: clamp(90px, 10vw, 130px);
+      height: auto; margin: 0 auto 1.1rem;
+      opacity: .45;
     }
-    .ft-copy {
-      font-family: var(--font-body); font-size: .63rem;
-      color: var(--cream); opacity: .18; letter-spacing: .08em;
+    .ft-copy { font-family: var(--font-body); font-size: .62rem; color: var(--cream); opacity: .16; letter-spacing: .08em; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding-top: 3rem;
+      }
+      .sidebar { display: none; }
+    }
+    @media (max-width: 580px) {
+      .layout { padding: 2.5rem 1.3rem 5rem; }
+      .page-header { padding: 7rem 1.3rem 2.8rem; }
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#conteudo-principal">Ir para o conteúdo</a>
 
-  <nav role="navigation" aria-label="Navegação">
-    <a href="./index.html" aria-label="Voltar ao site do Festival Serra do Palmital">
+  <nav class="site-nav" role="navigation" aria-label="Navegação">
+    <a href="./index.html" aria-label="Ir para a página inicial do Festival Serra do Palmital">
       <img src="../img/LOGO_FSP-01.png" alt="Festival Serra do Palmital" class="nav-logo">
     </a>
     <a href="./index.html" class="nav-back" aria-label="Voltar ao site">
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2L4 7l5 5"/></svg>
       Voltar ao site
     </a>
   </nav>
@@ -322,26 +350,34 @@
     <p class="page-header-meta">Última atualização: maio de 2026 &nbsp;·&nbsp; LGPD — Lei nº 13.709/2018</p>
   </header>
 
-  <main id="conteudo-principal">
-    <div class="content-wrap">
+  <div class="layout">
 
-      <nav class="toc" aria-label="Sumário">
-        <p class="toc-title">Sumário</p>
-        <ol>
-          <li><a href="#sec1">Quem somos</a></li>
-          <li><a href="#sec2">Dados que coletamos</a></li>
-          <li><a href="#sec3">Finalidade do tratamento</a></li>
-          <li><a href="#sec4">Base legal (LGPD)</a></li>
-          <li><a href="#sec5">Cookies</a></li>
-          <li><a href="#sec6">Compartilhamento de dados</a></li>
-          <li><a href="#sec7">Seus direitos</a></li>
-          <li><a href="#sec8">Retenção e exclusão</a></li>
-          <li><a href="#sec9">Segurança</a></li>
-          <li><a href="#sec10">Contato e DPO</a></li>
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" aria-label="Índice de seções">
+      <a href="./index.html" class="sidebar-back" aria-label="Voltar ao site do Festival">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2L4 7l5 5"/></svg>
+        Voltar ao site
+      </a>
+      <p class="toc-label">Nesta página</p>
+      <nav class="toc-nav" aria-label="Sumário">
+        <ol class="toc-list">
+          <li><a href="#sec1" class="toc-link"><span class="toc-num">01</span>Quem somos</a></li>
+          <li><a href="#sec2" class="toc-link"><span class="toc-num">02</span>Dados que coletamos</a></li>
+          <li><a href="#sec3" class="toc-link"><span class="toc-num">03</span>Finalidade do tratamento</a></li>
+          <li><a href="#sec4" class="toc-link"><span class="toc-num">04</span>Base legal (LGPD)</a></li>
+          <li><a href="#sec5" class="toc-link"><span class="toc-num">05</span>Cookies</a></li>
+          <li><a href="#sec6" class="toc-link"><span class="toc-num">06</span>Compartilhamento de dados</a></li>
+          <li><a href="#sec7" class="toc-link"><span class="toc-num">07</span>Seus direitos</a></li>
+          <li><a href="#sec8" class="toc-link"><span class="toc-num">08</span>Retenção e exclusão</a></li>
+          <li><a href="#sec9" class="toc-link"><span class="toc-num">09</span>Segurança</a></li>
+          <li><a href="#sec10" class="toc-link"><span class="toc-num">10</span>Contato e DPO</a></li>
         </ol>
       </nav>
+    </aside>
 
-      <!-- 1 -->
+    <!-- ── CONTENT ── -->
+    <main id="conteudo-principal" class="pp-content">
+
       <section class="pp-section" id="sec1" aria-labelledby="sec1-title">
         <p class="section-num">01</p>
         <h2 id="sec1-title">Quem somos</h2>
@@ -349,7 +385,6 @@
         <p>Para dúvidas sobre esta Política ou sobre o tratamento dos seus dados, entre em contato pelo e-mail indicado na Seção 10.</p>
       </section>
 
-      <!-- 2 -->
       <section class="pp-section" id="sec2" aria-labelledby="sec2-title">
         <p class="section-num">02</p>
         <h2 id="sec2-title">Dados que coletamos</h2>
@@ -365,7 +400,6 @@
         </div>
       </section>
 
-      <!-- 3 -->
       <section class="pp-section" id="sec3" aria-labelledby="sec3-title">
         <p class="section-num">03</p>
         <h2 id="sec3-title">Finalidade do tratamento</h2>
@@ -379,7 +413,6 @@
         <p>Não utilizamos seus dados para tomadas de decisão automatizadas (profiling) com efeitos jurídicos ou significativos.</p>
       </section>
 
-      <!-- 4 -->
       <section class="pp-section" id="sec4" aria-labelledby="sec4-title">
         <p class="section-num">04</p>
         <h2 id="sec4-title">Base legal (LGPD)</h2>
@@ -389,16 +422,14 @@
           <li><strong>Legítimo interesse (Art. 7º, IX):</strong> para cookies estritamente necessários ao funcionamento do site, que não requerem consentimento prévio.</li>
           <li><strong>Cumprimento de obrigação legal (Art. 7º, II):</strong> quando exigido por autoridade competente.</li>
         </ul>
-        <p>Você pode revogar seu consentimento a qualquer momento, clicando em <strong>"Gerenciar cookies"</strong> no rodapé do site ou entrando em contato conosco.</p>
+        <p>Você pode revogar seu consentimento a qualquer momento clicando em <strong>"Gerenciar cookies"</strong> no rodapé do site principal ou entrando em contato conosco.</p>
       </section>
 
-      <!-- 5 -->
       <section class="pp-section" id="sec5" aria-labelledby="sec5-title">
         <p class="section-num">05</p>
         <h2 id="sec5-title">Cookies</h2>
         <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo para melhorar a experiência de navegação. Utilizamos os seguintes tipos:</p>
-
-        <table class="cookie-table" aria-label="Tabela de cookies utilizados no site">
+        <table class="cookie-table" aria-label="Cookies utilizados no site">
           <thead>
             <tr>
               <th>Cookie / Serviço</th>
@@ -421,31 +452,28 @@
               <td>2 anos</td>
             </tr>
             <tr>
-              <td><strong>Google Tag Manager (_gtm_*)</strong></td>
+              <td><strong>Google Tag Manager</strong></td>
               <td><span class="badge">Analítico</span></td>
               <td>Gerencia as tags de rastreamento e disparos de eventos no site.</td>
               <td>Sessão</td>
             </tr>
           </tbody>
         </table>
-
-        <p>Você pode bloquear ou excluir cookies a qualquer momento pelas configurações do seu navegador. Note que desativar cookies analíticos não prejudica a navegação no site.</p>
+        <p>Você pode bloquear ou excluir cookies a qualquer momento pelas configurações do seu navegador. Desativar cookies analíticos não prejudica a navegação no site.</p>
       </section>
 
-      <!-- 6 -->
       <section class="pp-section" id="sec6" aria-labelledby="sec6-title">
         <p class="section-num">06</p>
         <h2 id="sec6-title">Compartilhamento de dados</h2>
         <p>Compartilhamos seus dados somente com os seguintes operadores e nas condições descritas:</p>
         <ul>
-          <li><strong>Google LLC</strong> (Analytics e Tag Manager): dados de navegação anonimizados para fins de análise. Google é certificada no <a href="https://www.privacyshield.gov" target="_blank" rel="noopener noreferrer">Data Privacy Framework</a> e adota cláusulas contratuais padrão da UE/EEA.</li>
-          <li><strong>Meta Platforms (Instagram):</strong> ao clicar nos links para nosso perfil do Instagram, você é redirecionado a plataforma de terceiro sujeita à própria política de privacidade.</li>
+          <li><strong>Google LLC</strong> (Analytics e Tag Manager): dados de navegação anonimizados para fins de análise. Google é certificada no Data Privacy Framework e adota cláusulas contratuais padrão.</li>
+          <li><strong>Meta Platforms (Instagram):</strong> ao clicar nos links para nosso perfil, você é redirecionado à plataforma de terceiro, sujeita à própria política de privacidade.</li>
         </ul>
         <p>Não vendemos, alugamos ou cedemos seus dados pessoais a terceiros para fins de marketing.</p>
         <p>Podemos divulgar dados quando exigido por ordem judicial, autoridade competente ou obrigação legal.</p>
       </section>
 
-      <!-- 7 -->
       <section class="pp-section" id="sec7" aria-labelledby="sec7-title">
         <p class="section-num">07</p>
         <h2 id="sec7-title">Seus direitos</h2>
@@ -461,7 +489,7 @@
           </div>
           <div class="right-item" role="listitem">
             <p class="right-item-title">Anonimização ou Exclusão</p>
-            <p>Solicitar bloqueio, anonimização ou eliminação de dados desnecessários ou tratados em desconformidade com a LGPD.</p>
+            <p>Solicitar bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade com a LGPD.</p>
           </div>
           <div class="right-item" role="listitem">
             <p class="right-item-title">Portabilidade</p>
@@ -479,7 +507,6 @@
         <p>Para exercer qualquer um desses direitos, entre em contato pelo e-mail indicado na Seção 10. Responderemos em até <strong>15 dias úteis</strong>.</p>
       </section>
 
-      <!-- 8 -->
       <section class="pp-section" id="sec8" aria-labelledby="sec8-title">
         <p class="section-num">08</p>
         <h2 id="sec8-title">Retenção e exclusão</h2>
@@ -492,7 +519,6 @@
         <p>Após o prazo de retenção, os dados são excluídos ou anonimizados de forma irreversível.</p>
       </section>
 
-      <!-- 9 -->
       <section class="pp-section" id="sec9" aria-labelledby="sec9-title">
         <p class="section-num">09</p>
         <h2 id="sec9-title">Segurança</h2>
@@ -506,27 +532,49 @@
         <p>Em caso de incidente de segurança com potencial impacto aos titulares, notificaremos a <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> e os afetados conforme prazos legais.</p>
       </section>
 
-      <!-- 10 -->
       <section class="pp-section" id="sec10" aria-labelledby="sec10-title">
         <p class="section-num">10</p>
         <h2 id="sec10-title">Contato e Encarregado de Dados (DPO)</h2>
         <p>Para exercer seus direitos, esclarecer dúvidas ou registrar reclamações relacionadas ao tratamento de dados pessoais, entre em contato com nosso Encarregado de Proteção de Dados:</p>
         <div class="highlight-box">
-          <p><strong>Festival Internacional Serra do Palmital</strong><br>
-          E-mail: <a href="mailto:privacidade@festivalserradopalmital.com.br">privacidade@festivalserradopalmital.com.br</a><br>
-          Rota do Buquira · Serra do Palmital · Vale do Paraíba — SP · Brasil</p>
+          <p>
+            <strong>Festival Internacional Serra do Palmital</strong><br>
+            E-mail: <a href="mailto:privacidade@festivalserradopalmital.com.br">privacidade@festivalserradopalmital.com.br</a><br>
+            Rota do Buquira · Serra do Palmital · Vale do Paraíba — SP · Brasil
+          </p>
         </div>
         <p>Você também pode registrar reclamações diretamente na <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> pelo site <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a>.</p>
-        <p style="margin-top:1.5rem; font-size:.82rem; opacity:.5;">Esta Política pode ser atualizada periodicamente. A data de vigência está indicada no topo desta página. O uso contínuo do site após alterações constitui aceitação das novas condições.</p>
+        <p style="margin-top:1.4rem;font-size:.8rem;opacity:.4;">Esta Política pode ser atualizada periodicamente. A data de vigência está indicada no topo desta página. O uso contínuo do site após alterações constitui aceitação das novas condições.</p>
       </section>
 
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer role="contentinfo">
     <img src="../img/LOGO_FSP-01.png" alt="Festival Internacional da Serra do Palmital" class="ft-logo">
     <p class="ft-copy">&copy; 2026 Festival Serra do Palmital. Todos os direitos reservados.</p>
   </footer>
 
+  <script>
+    /* Active TOC link as user scrolls */
+    (function () {
+      var links   = document.querySelectorAll('.toc-link');
+      var sections = Array.from(links).map(function (a) {
+        return document.querySelector(a.getAttribute('href'));
+      });
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            links.forEach(function (a) { a.classList.remove('active'); });
+            var idx = sections.indexOf(entry.target);
+            if (idx !== -1) links[idx].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+      sections.forEach(function (s) { if (s) observer.observe(s); });
+    })();
+  </script>
 </body>
 </html>
