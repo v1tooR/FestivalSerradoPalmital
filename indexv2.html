@@ -683,6 +683,33 @@
       #scrollTrack2 { height: auto; }
       #scrollStage2 { position: relative; top: auto; height: auto; overflow: visible; }
       #scrollStrip2 { display: block; width: 100%; height: auto; transform: none !important; }
+      #scrollTrack2 .scene-chamada {
+        min-height: 100svh;
+        padding: clamp(2rem, 8vh, 4.5rem) 0 clamp(2.8rem, 9vh, 5rem);
+      }
+      #scrollTrack2 .scene-chamada::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 1.35rem;
+        width: min(7.5rem, 36vw);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(96,78,41,.34), transparent);
+        transform: translateX(-50%);
+      }
+      #scrollTrack2 .scene-cta {
+        min-height: 100svh;
+        padding: clamp(2.8rem, 9vh, 5rem) 0 clamp(4rem, 11vh, 6rem);
+        background: linear-gradient(180deg, #f8dfb8 0%, var(--cream) 28%);
+      }
+      #scrollTrack2 .scene-cta::before {
+        top: 0;
+        left: 50%;
+        width: min(8rem, 42vw);
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--amber), var(--burnt-orange), transparent);
+        transform: translateX(-50%);
+      }
     }
 
     /* ── INFO BAND ── */
@@ -826,7 +853,7 @@
       .chamada-inner, .cta-inner { padding: 3rem 1.5rem; }
       .chamada-inner {
         max-width: 390px;
-        padding: 4.7rem 1.45rem 1.8rem;
+        padding: 2.4rem 1.45rem .6rem;
       }
       .chap-label {
         font-size: .5rem;
@@ -855,6 +882,38 @@
       }
       .story-body p + p {
         margin-top: .65rem;
+      }
+      #scrollTrack2 .cta-inner {
+        max-width: 390px;
+        padding: .7rem 1.45rem 0;
+      }
+      #scrollTrack2 .cta-kicker {
+        font-size: .52rem;
+        letter-spacing: .26em;
+        margin-bottom: .8rem;
+      }
+      #scrollTrack2 .cta-title {
+        font-size: clamp(1.95rem, 10vw, 2.65rem);
+        line-height: 1.02;
+        margin-bottom: .85rem;
+      }
+      #scrollTrack2 .cta-sub {
+        font-size: 1.02rem;
+        line-height: 1.32;
+        margin-bottom: 1.7rem;
+      }
+      #scrollTrack2 .cta-main {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        padding: 1rem 1.2rem;
+        font-size: .82rem;
+      }
+      #scrollTrack2 .cta-note {
+        max-width: 300px;
+        margin: 1.1rem auto 0;
+        font-size: .62rem;
+        line-height: 1.45;
       }
 
       /* Pilares mobile */
