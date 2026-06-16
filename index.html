@@ -104,8 +104,8 @@
         "description": "Festival de gastronomia, cinema ao ar livre, shows, oficinas artesanais e turismo regenerativo na Serra do Palmital, Rota do Buquira, Vale do Paraíba, SP.",
         "image": "https://festivalserradopalmital.com.br/img/background-hero.webp",
         "url": "https://festivalserradopalmital.com.br/",
-        "startDate": "2026-07-02",
-        "endDate": "2026-07-05",
+        "startDate": "2026-08-27",
+        "endDate": "2026-08-30",
         "duration": "P4D",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "eventStatus": "https://schema.org/EventScheduled",
@@ -1437,8 +1437,10 @@
       z-index: 170;
       display: flex;
       align-items: center;
-      gap: 1.1rem;
-      padding: .72rem .8rem .72rem 1rem;
+      justify-content: space-between;
+      gap: 1.6rem;
+      padding: .8rem 1rem .8rem 1.1rem;
+      min-width: 360px;
       background: rgba(17,26,25,.88);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
@@ -1456,7 +1458,7 @@
       pointer-events: auto;
     }
     .float-cta-logo {
-      width: 38px;
+      width: 44px;
       height: auto;
       flex-shrink: 0;
       filter: drop-shadow(0 1px 8px rgba(0,0,0,.35));
@@ -1464,32 +1466,33 @@
     .float-cta-info {
       display: flex;
       flex-direction: column;
-      gap: .12rem;
+      gap: .18rem;
+      flex: 1;
     }
     .float-cta-dates {
       font-family: var(--font-display);
-      font-size: .58rem;
+      font-size: .78rem;
       font-weight: 700;
-      letter-spacing: .15em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--amber);
     }
     .float-cta-name {
       font-family: var(--font-editorial);
-      font-size: .68rem;
-      color: rgba(255,235,202,.75);
+      font-size: .8rem;
+      color: rgba(255,235,202,.72);
       line-height: 1.25;
     }
     .float-cta-btn {
       font-family: var(--font-display);
-      font-size: .65rem;
+      font-size: .72rem;
       font-weight: 700;
-      letter-spacing: .12em;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--near-black);
       background: var(--amber);
-      padding: .54rem 1.1rem;
+      padding: .64rem 1.4rem;
       white-space: nowrap;
       flex-shrink: 0;
       transition: background .22s, transform .18s;
@@ -1503,12 +1506,141 @@
         bottom: 1.2rem;
         right: 1rem;
         left: 1rem;
-        gap: .8rem;
-        padding: .65rem .7rem .65rem .85rem;
+        min-width: unset;
+        gap: 1rem;
+        padding: .72rem .85rem .72rem 1rem;
       }
-      .float-cta-logo { width: 30px; }
+      .float-cta-logo { width: 34px; }
       .float-cta-name { display: none; }
-      .float-cta-btn { font-size: .6rem; padding: .5rem .9rem; }
+      .float-cta-btn { font-size: .65rem; padding: .58rem 1rem; }
+    }
+
+    /* ══════════════════════════════════════════════
+       PATROCINADORES
+    ══════════════════════════════════════════════ */
+    .sponsors-section {
+      background: #0c1512;
+      padding: 3.2rem 0 4rem;
+      position: relative;
+    }
+    .sponsors-section::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 4.4rem);
+      max-width: 940px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(247,169,44,.18) 30%, rgba(247,169,44,.18) 70%, transparent);
+    }
+    .sponsors-inner {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 0 2.2rem;
+    }
+    .sponsors-eyebrow {
+      font-family: var(--font-display);
+      font-size: .52rem;
+      font-weight: 700;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+      color: var(--amber);
+      opacity: .55;
+      text-align: center;
+      margin-bottom: 2.6rem;
+    }
+    .sponsors-grid {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .sponsors-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.3rem;
+      padding: 0 2.4rem;
+      position: relative;
+    }
+    .sponsors-group + .sponsors-group::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(255,235,202,.09) 30%, rgba(255,235,202,.09) 70%, transparent);
+    }
+    .sponsors-label {
+      font-family: var(--font-display);
+      font-size: .48rem;
+      font-weight: 700;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: rgba(255,235,202,.38);
+      white-space: nowrap;
+    }
+    .sponsors-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+    }
+    .sponsors-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sponsors-logo-wrap img {
+      display: block;
+      max-height: 44px;
+      width: auto;
+      max-width: 120px;
+      filter: grayscale(1) brightness(.9) opacity(.65);
+      transition: filter .32s ease, transform .28s ease;
+      object-fit: contain;
+    }
+    .sponsors-logo-wrap:hover img {
+      filter: grayscale(0) brightness(1) opacity(1);
+      transform: scale(1.06);
+    }
+    .sponsors-logo-wrap img.logo-large { max-height: 52px; max-width: 140px; }
+    .sponsors-logo-wrap img.logo-small { max-height: 34px; max-width: 100px; }
+    .sponsors-logo-light {
+      background: #fff;
+      border-radius: 4px;
+      padding: .55rem .85rem;
+    }
+
+    @media (max-width: 820px) {
+      .sponsors-grid {
+        gap: 2.4rem 0;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .sponsors-group {
+        flex: 0 0 50%;
+        padding: 0 1.6rem;
+      }
+      .sponsors-group:nth-child(odd)::before { display: none; }
+      .sponsors-group:nth-child(2)::before { display: none; }
+    }
+    @media (max-width: 480px) {
+      .sponsors-section { padding: 2.6rem 0 3.2rem; }
+      .sponsors-inner { padding: 0 1.4rem; }
+      .sponsors-group {
+        flex: 0 0 100%;
+        padding: 0 1rem;
+        gap: 1rem;
+      }
+      .sponsors-group + .sponsors-group::before { display: none; }
+      .sponsors-group + .sponsors-group {
+        padding-top: 1.8rem;
+        border-top: 1px solid rgba(255,235,202,.07);
+      }
+      .sponsors-logo-wrap img { max-height: 38px; max-width: 110px; }
+      .sponsors-logo-wrap img.logo-large { max-height: 46px; max-width: 128px; }
     }
   </style>
 </head>
@@ -1525,7 +1657,7 @@
   <div class="float-cta" id="floatCta" role="complementary" aria-label="Botão de compra de ingressos">
     <img src="../img/LOGO_FSP-01.png" alt="" class="float-cta-logo" aria-hidden="true">
     <div class="float-cta-info">
-      <span class="float-cta-dates">02 — 05 Jul</span>
+      <span class="float-cta-dates">27 — 30 Ago</span>
       <span class="float-cta-name">Serra do Palmital</span>
     </div>
     <a href="https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797"
@@ -1633,7 +1765,7 @@
           <h1 id="titulo-festival" class="visually-hidden">1º Festival Internacional Serra do Palmital — Gastronomia, Cinema e Cultura no Vale do Paraíba</h1>
           <div class="hero-content" id="heroContent">
             <img src="../img/LOGO_FSP-01.png" alt="1º Festival Serra do Palmital" class="hero-logo a1">
-            <p class="hero-dates a2">02 &mdash; 05 JUL · 2026</p>
+            <p class="hero-dates a2">27 &mdash; 30 AGO · 2026</p>
             <div class="hero-actions a3">
               <a href="https://www.instagram.com/festivalinterserradopalmital/" class="btn-primary" aria-label="Saiba mais sobre o Festival Serra do Palmital no Instagram">SAIBA MAIS &nbsp;→</a>
             </div>
@@ -1750,11 +1882,11 @@
         <div class="prog-header-meta">
           <p class="prog-kicker">Programação</p>
           <h2 class="prog-heading" id="prog-heading-title">4 dias de cinema,<br>gastronomia e cultura</h2>
-          <p class="prog-sub">02 — 05 de julho de 2026 · Serra do Palmital, Vale do Paraíba</p>
+          <p class="prog-sub">27 — 30 de agosto de 2026 · Serra do Palmital, Vale do Paraíba</p>
         </div>
         <div class="prog-date-stamp" aria-hidden="true">
-          <span class="pds-num">02—05</span>
-          <span class="pds-lbl">Jul · 2026</span>
+          <span class="pds-num">27—30</span>
+          <span class="pds-lbl">Ago · 2026</span>
         </div>
       </div>
 
@@ -1762,20 +1894,20 @@
       <div class="prog-tabs-scroll" role="tablist" aria-label="Dias do festival">
         <div class="prog-tabs">
           <button class="prog-tab active" data-tab="0" role="tab" aria-selected="true" aria-controls="prog-day-0">
-            <span class="prog-tab-date">02</span>
-            <span class="prog-tab-label">Qui · Jul</span>
+            <span class="prog-tab-date">27</span>
+            <span class="prog-tab-label">Qui · Ago</span>
           </button>
           <button class="prog-tab" data-tab="1" role="tab" aria-selected="false" aria-controls="prog-day-1">
-            <span class="prog-tab-date">03</span>
-            <span class="prog-tab-label">Sex · Jul</span>
+            <span class="prog-tab-date">28</span>
+            <span class="prog-tab-label">Sex · Ago</span>
           </button>
           <button class="prog-tab" data-tab="2" role="tab" aria-selected="false" aria-controls="prog-day-2">
-            <span class="prog-tab-date">04</span>
-            <span class="prog-tab-label">Sáb · Jul</span>
+            <span class="prog-tab-date">29</span>
+            <span class="prog-tab-label">Sáb · Ago</span>
           </button>
           <button class="prog-tab" data-tab="3" role="tab" aria-selected="false" aria-controls="prog-day-3">
-            <span class="prog-tab-date">05</span>
-            <span class="prog-tab-label">Dom · Jul</span>
+            <span class="prog-tab-date">30</span>
+            <span class="prog-tab-label">Dom · Ago</span>
           </button>
         </div>
       </div>
@@ -1783,24 +1915,24 @@
       <!-- ── PURCHASE STRIP ── -->
       <div class="prog-buy-strip" id="progBuyStrip" aria-live="polite" aria-label="Ingresso para o dia selecionado">
         <div class="prog-buy-day-info">
-          <span class="prog-buy-day-num" id="progBuyNum">02</span>
+          <span class="prog-buy-day-num" id="progBuyNum">27</span>
           <div class="prog-buy-day-meta">
-            <span class="prog-buy-day-name" id="progBuyName">Quinta-feira · 02 Jul</span>
+            <span class="prog-buy-day-name" id="progBuyName">Quinta-feira · 27 Ago</span>
             <span class="prog-buy-day-theme" id="progBuyTheme">Infância, Memória e Aberturas</span>
           </div>
         </div>
         <div class="prog-buy-right">
-          <a href="https://www.sympla.com.br/evento/02-07-1-festival-internacional-serra-do-palmital/3446750"
+          <a href="https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797"
              class="prog-buy-btn" id="progBuyBtn"
              target="_blank" rel="noopener noreferrer"
-             aria-label="Garantir ingresso para quinta-feira 02 de julho via Sympla">
+             aria-label="Garantir ingresso para quinta-feira 27 de agosto via Sympla">
             Garantir ingresso &nbsp;<span class="prog-buy-arrow" aria-hidden="true">→</span>
           </a>
           <span class="prog-buy-via">via Sympla</span>
         </div>
       </div>
 
-      <!-- ── DIA 02 · QUINTA-FEIRA ── -->
+      <!-- ── DIA 27 · QUINTA-FEIRA ── -->
       <div class="prog-panel active" id="prog-day-0" role="tabpanel">
         <p class="prog-theme-bar">Tema do dia — Infância, Memória e Aberturas</p>
         <div class="prog-list">
@@ -1852,7 +1984,7 @@
         </div>
       </div>
 
-      <!-- ── DIA 03 · SEXTA-FEIRA ── -->
+      <!-- ── DIA 28 · SEXTA-FEIRA ── -->
       <div class="prog-panel" id="prog-day-1" role="tabpanel">
         <p class="prog-theme-bar">Tema do dia — Homenagens e Clássicos Brasileiros</p>
         <div class="prog-list">
@@ -1904,7 +2036,7 @@
         </div>
       </div>
 
-      <!-- ── DIA 04 · SÁBADO ── -->
+      <!-- ── DIA 29 · SÁBADO ── -->
       <div class="prog-panel" id="prog-day-2" role="tabpanel">
         <p class="prog-theme-bar">Tema do dia — Humor, Cultura Popular e Encontros</p>
         <div class="prog-list">
@@ -1951,7 +2083,7 @@
         </div>
       </div>
 
-      <!-- ── DIA 05 · DOMINGO ── -->
+      <!-- ── DIA 30 · DOMINGO ── -->
       <div class="prog-panel" id="prog-day-3" role="tabpanel">
         <p class="prog-theme-bar">Tema do dia — Celebração, Futebol e Encerramento</p>
         <div class="prog-list">
@@ -1993,6 +2125,55 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ══ PATROCINADORES ══ -->
+  <section class="sponsors-section" aria-label="Patrocinadores e apoiadores do Festival Serra do Palmital">
+    <div class="sponsors-inner">
+      <p class="sponsors-eyebrow">Realização &amp; Apoio</p>
+      <div class="sponsors-grid">
+
+        <div class="sponsors-group">
+          <span class="sponsors-label">Realização</span>
+          <div class="sponsors-logos">
+            <div class="sponsors-logo-wrap">
+              <img src="img/sbseventos_1x.webp" alt="SBS Eventos — Realização" class="logo-large">
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsors-group">
+          <span class="sponsors-label">Oferecimento</span>
+          <div class="sponsors-logos">
+            <div class="sponsors-logo-wrap">
+              <img src="img/band_1x.webp" alt="BandVale — Oferecimento">
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsors-group">
+          <span class="sponsors-label">Apoio</span>
+          <div class="sponsors-logos">
+            <div class="sponsors-logo-wrap">
+              <img src="img/carasagro_1x.webp" alt="CARAS Agro Business — Apoio">
+            </div>
+            <div class="sponsors-logo-wrap">
+              <img src="img/silvania2_1x.webp" alt="Silvania2 Laticínios Artesanais — Apoio" class="logo-small">
+            </div>
+          </div>
+        </div>
+
+        <div class="sponsors-group">
+          <span class="sponsors-label">Apoio Institucional</span>
+          <div class="sponsors-logos">
+            <div class="sponsors-logo-wrap sponsors-logo-light">
+              <img src="img/ministerio_do_turismo_1x.webp" alt="Ministério do Turismo — Apoio Institucional" class="logo-large">
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -2051,7 +2232,7 @@
             <a href="https://instagram.com/festivalinterserradopalmital" class="cta-main" id="ctaBtn" target="_blank" rel="noopener noreferrer" aria-label="Seguir o festival no Instagram">
               Seguir no Instagram &nbsp;<span class="arr" aria-hidden="true">→</span>
             </a>
-            <p class="cta-note" id="ctaNote">02 &mdash; 05 JUL · 2026 &nbsp;·&nbsp; Serra do Palmital, Vale do Paraíba — SP</p>
+            <p class="cta-note" id="ctaNote">27 &mdash; 30 AGO · 2026 &nbsp;·&nbsp; Serra do Palmital, Vale do Paraíba — SP</p>
           </div>
         </section>
 
@@ -2061,7 +2242,7 @@
 
   <!-- INFO BAND (normal scroll, after track) -->
   <div class="info-band" role="complementary" aria-label="Informações rápidas do Festival Serra do Palmital">
-    <div class="info-it"><p class="info-lbl">Data</p><p class="info-val">02 — 05 Jul · 2026</p></div>
+    <div class="info-it"><p class="info-lbl">Data</p><p class="info-val">27 — 30 Ago · 2026</p></div>
     <div class="info-it"><p class="info-lbl">Local</p><p class="info-val">Serra do Palmital</p></div>
     <div class="info-it"><p class="info-lbl">Região</p><p class="info-val">Vale do Paraíba · SP</p></div>
     <div class="info-it"><p class="info-lbl">Edição</p><p class="info-val">1ª Edição</p></div>
@@ -2070,7 +2251,7 @@
 
   <!-- FOOTER -->
   <footer role="contentinfo">
-    <p class="ft-dates">02 — 05 JUL · 2026</p>
+    <p class="ft-dates">27 — 30 AGO · 2026</p>
     <img src="../img/LOGO_FSP-01.png" alt="Festival Internacional da Serra do Palmital" class="ft-logo">
     <div class="ft-div" aria-hidden="true"></div>
     <p class="ft-copy">&copy; 2026 Festival Serra do Palmital. Todos os direitos reservados.</p>
@@ -2410,28 +2591,28 @@
 
       var dayData = [
         {
-          num: '02', name: 'Quinta-feira · 02 Jul',
+          num: '27', name: 'Quinta-feira · 27 Ago',
           theme: 'Infância, Memória e Aberturas',
-          url: 'https://www.sympla.com.br/evento/02-07-1-festival-internacional-serra-do-palmital/3446750',
-          aria: 'Garantir ingresso — Quinta-feira 02 de julho via Sympla'
+          url: 'https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797',
+          aria: 'Garantir ingresso — Quinta-feira 27 de agosto via Sympla'
         },
         {
-          num: '03', name: 'Sexta-feira · 03 Jul',
+          num: '28', name: 'Sexta-feira · 28 Ago',
           theme: 'Homenagens e Clássicos Brasileiros',
-          url: 'https://www.sympla.com.br/evento/03-07-1-festival-internacional-serra-do-palmital/3446753',
-          aria: 'Garantir ingresso — Sexta-feira 03 de julho via Sympla'
+          url: 'https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797',
+          aria: 'Garantir ingresso — Sexta-feira 28 de agosto via Sympla'
         },
         {
-          num: '04', name: 'Sábado · 04 Jul',
+          num: '29', name: 'Sábado · 29 Ago',
           theme: 'Humor, Cultura Popular e Encontros',
-          url: 'https://www.sympla.com.br/evento/04-07-1-festival-internacional-serra-do-palmital/3446755',
-          aria: 'Garantir ingresso — Sábado 04 de julho via Sympla'
+          url: 'https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797',
+          aria: 'Garantir ingresso — Sábado 29 de agosto via Sympla'
         },
         {
-          num: '05', name: 'Domingo · 05 Jul',
+          num: '30', name: 'Domingo · 30 Ago',
           theme: 'Celebração, Futebol e Encerramento',
-          url: 'https://www.sympla.com.br/evento/05-07-1-festival-internacional-serra-do-palmital/3446759',
-          aria: 'Garantir ingresso — Domingo 05 de julho via Sympla'
+          url: 'https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797',
+          aria: 'Garantir ingresso — Domingo 30 de agosto via Sympla'
         }
       ];
 
