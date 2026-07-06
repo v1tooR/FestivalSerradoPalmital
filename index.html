@@ -1642,6 +1642,533 @@
       .sponsors-logo-wrap img { max-height: 38px; max-width: 110px; }
       .sponsors-logo-wrap img.logo-large { max-height: 46px; max-width: 128px; }
     }
+
+    /* ══════════════════════════════════════════════
+       PASSEIOS
+    ══════════════════════════════════════════════ */
+    .passeios-section {
+      background: #0a1410;
+      padding: 4.5rem 0 5.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ambient glow bottom-left */
+    .passeios-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 5% 90%, rgba(115,146,86,.055) 0%, transparent 60%),
+        radial-gradient(ellipse 35% 30% at 95% 10%, rgba(247,169,44,.03) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .passeios-section::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 4.4rem);
+      max-width: 1200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(115,146,86,.22) 30%, rgba(115,146,86,.22) 70%, transparent);
+      z-index: 1;
+    }
+
+    .passeios-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .passeios-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 1rem 2.5rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(255,235,202,.06);
+    }
+
+    .passeios-header-meta { display: flex; flex-direction: column; gap: .7rem; }
+
+    .passeios-kicker {
+      font-family: var(--font-display);
+      font-size: .58rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--sage); opacity: .9;
+    }
+
+    .passeios-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.9rem);
+      font-weight: 700; color: var(--cream); line-height: 1.08;
+    }
+
+    .passeios-sub {
+      font-family: var(--font-body); font-size: .82rem;
+      color: var(--cream); opacity: .3; letter-spacing: .04em;
+      max-width: 28rem;
+    }
+
+    .passeios-count {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 700;
+      color: rgba(115,146,86,.06);
+      letter-spacing: -.04em;
+      line-height: 1;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* Cards grid */
+    .passeios-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.1rem;
+    }
+
+    /* Individual card */
+    .passeio-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(44px);
+      transition:
+        opacity .65s cubic-bezier(.16,1,.3,1),
+        transform .65s cubic-bezier(.16,1,.3,1),
+        box-shadow .4s ease;
+    }
+
+    .passeio-card.is-visible { opacity: 1; transform: translateY(0); }
+    #pc0 { transition-delay: 0s; }
+    #pc1 { transition-delay: .1s; }
+    #pc2 { transition-delay: .2s; }
+    #pc3 { transition-delay: .3s; }
+
+    .passeio-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(115,146,86,.18);
+      z-index: 2;
+    }
+
+    /* Photo layer */
+    .pc-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .passeio-card:hover .pc-img { transform: scale(1.07); }
+
+    /* Gradient overlay */
+    .pc-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,20,16,.08) 0%,
+        rgba(10,20,16,.28) 42%,
+        rgba(10,20,16,.82) 70%,
+        rgba(10,20,16,.97) 100%
+      );
+      transition: background .4s ease;
+    }
+    .passeio-card:hover .pc-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(10,20,16,.18) 0%,
+        rgba(10,20,16,.45) 38%,
+        rgba(10,20,16,.88) 65%,
+        rgba(10,20,16,.98) 100%
+      );
+    }
+
+    /* Sage top accent line */
+    .pc-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--sage), var(--amber));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .45s cubic-bezier(.16,1,.3,1);
+      z-index: 3;
+    }
+    .passeio-card:hover .pc-accent { transform: scaleX(1); }
+
+    /* Number badge */
+    .pc-num {
+      position: absolute;
+      top: 1.1rem; left: 1.3rem;
+      font-family: var(--font-display);
+      font-size: .5rem; font-weight: 700;
+      letter-spacing: .38em; text-transform: uppercase;
+      color: var(--sage); opacity: .7;
+      z-index: 3;
+    }
+
+    /* Icon — center, fades out on hover */
+    .pc-icon {
+      position: absolute;
+      top: 38%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      color: var(--cream); opacity: .22;
+      transition: opacity .35s ease, transform .35s ease;
+      z-index: 3;
+    }
+    .passeio-card:hover .pc-icon {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+
+    /* Content at bottom */
+    .pc-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 1.3rem 1.3rem;
+      z-index: 3;
+    }
+
+    .pc-tag {
+      display: block;
+      font-family: var(--font-display);
+      font-size: .46rem; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: var(--sage); opacity: .65;
+      margin-bottom: .55rem;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: color .3s, opacity .3s;
+    }
+    .passeio-card:hover .pc-tag { color: var(--amber); opacity: .8; }
+
+    .pc-title {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.7vw, 1.28rem);
+      font-weight: 700;
+      color: var(--cream); line-height: 1.12;
+      margin-bottom: 0;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    .passeio-card:hover .pc-title { transform: translateY(-4px); }
+
+    /* Description — slides up on hover */
+    .pc-desc {
+      font-family: var(--font-body);
+      font-size: .8rem;
+      color: rgba(255,235,202,.65);
+      line-height: 1.55;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .42s cubic-bezier(.16,1,.3,1), opacity .3s ease .06s, margin .35s;
+      margin-top: 0;
+    }
+    .passeio-card:hover .pc-desc {
+      max-height: 6em;
+      opacity: 1;
+      margin-top: .7rem;
+    }
+
+    /* "Saiba mais" arrow */
+    .pc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--font-display);
+      font-size: .55rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--amber);
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height .38s cubic-bezier(.16,1,.3,1) .04s, opacity .28s ease .1s, margin .35s;
+      margin-top: 0;
+    }
+    .pc-cta-arrow { transition: transform .25s; }
+    .passeio-card:hover .pc-cta {
+      max-height: 2em;
+      opacity: 1;
+      margin-top: .75rem;
+    }
+    .passeio-card:hover .pc-cta-arrow { transform: translateX(4px); }
+
+    /* Keyboard focus state */
+    .passeio-card:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+    }
+    .passeio-card:focus-visible .pc-accent,
+    .passeio-card.pc-focus .pc-accent { transform: scaleX(1); }
+    .passeio-card:focus-visible .pc-title,
+    .passeio-card.pc-focus .pc-title { transform: translateY(-4px); }
+    .passeio-card:focus-visible .pc-desc,
+    .passeio-card.pc-focus .pc-desc { max-height: 6em; opacity: 1; margin-top: .7rem; }
+    .passeio-card:focus-visible .pc-cta,
+    .passeio-card.pc-focus .pc-cta { max-height: 2em; opacity: 1; margin-top: .75rem; }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .passeios-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+      #pc2 { transition-delay: 0s; }
+      #pc3 { transition-delay: .1s; }
+    }
+
+    @media (max-width: 580px) {
+      .passeios-section { padding: 3rem 0 3.8rem; }
+      .passeios-inner { padding: 0 1.3rem; }
+      .passeios-header { grid-template-columns: 1fr; gap: .7rem; padding-bottom: 1.8rem; margin-bottom: 2rem; }
+      .passeios-count { display: none; }
+      .passeios-grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+      .passeio-card { aspect-ratio: 2 / 3; }
+      .pc-title { font-size: .92rem; }
+      .pc-tag { font-size: .42rem; }
+      .pc-content { padding: 0 .9rem .9rem; }
+    }
+
+    /* ══════════════════════════════════════════════
+       PASSEIOS — MODAL
+    ══════════════════════════════════════════════ */
+    .pm-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(6,11,9,.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .32s ease;
+    }
+    .pm-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .pm-panel {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      max-width: 880px;
+      max-height: 88vh;
+      background: #0c1a14;
+      border-radius: 3px;
+      overflow: hidden;
+      transform: translateY(32px) scale(.96);
+      transition: transform .44s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 50px 140px rgba(0,0,0,.75), 0 0 0 1px rgba(115,146,86,.15);
+      outline: none;
+    }
+    .pm-backdrop.is-open .pm-panel {
+      transform: translateY(0) scale(1);
+    }
+    .pm-img-side {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+    }
+    .pm-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+      transition: transform .7s cubic-bezier(.16,1,.3,1) .1s;
+    }
+    .pm-backdrop.is-open .pm-img {
+      transform: scale(1);
+    }
+    .pm-img-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, transparent 50%, #0c1a14 100%),
+        linear-gradient(to bottom, rgba(5,12,10,.2) 0%, rgba(5,12,10,.6) 100%);
+      z-index: 1;
+    }
+    .pm-img-num {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-family: var(--font-display);
+      font-size: 7rem;
+      line-height: 1;
+      color: rgba(255,235,202,.05);
+      z-index: 2;
+      user-select: none;
+      pointer-events: none;
+    }
+    .pm-content-side {
+      display: flex;
+      flex-direction: column;
+      padding: 2.4rem 2rem 2rem 1.6rem;
+      overflow-y: auto;
+      max-height: 88vh;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pm-close {
+      position: absolute;
+      top: .9rem;
+      right: .9rem;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,235,202,.05);
+      border: 1px solid rgba(255,235,202,.08);
+      border-radius: 50%;
+      cursor: pointer;
+      color: rgba(255,235,202,.45);
+      font-size: 1rem;
+      line-height: 1;
+      transition: background .22s, color .22s, border-color .22s, transform .22s;
+      z-index: 10;
+    }
+    .pm-close:hover {
+      background: rgba(247,169,44,.12);
+      border-color: rgba(247,169,44,.4);
+      color: var(--amber);
+      transform: rotate(90deg);
+    }
+    .pm-category {
+      font-family: var(--font-body);
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin: 0 0 .7rem;
+      padding-right: 2.6rem;
+    }
+    .pm-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1.06;
+      color: var(--cream);
+      margin: 0 0 .9rem;
+    }
+    .pm-rule {
+      width: 2rem;
+      height: 2px;
+      background: var(--amber);
+      margin: 0 0 1.1rem;
+      border: none;
+    }
+    .pm-desc-para {
+      font-family: var(--font-body);
+      font-size: .82rem;
+      line-height: 1.8;
+      color: rgba(255,235,202,.67);
+      margin: 0 0 .75rem;
+    }
+    .pm-features {
+      list-style: none;
+      padding: 0;
+      margin: .3rem 0 1rem;
+      border-top: 1px solid rgba(255,235,202,.06);
+    }
+    .pm-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .55rem;
+      font-family: var(--font-body);
+      font-size: .76rem;
+      line-height: 1.6;
+      color: rgba(255,235,202,.6);
+      padding: .38rem 0;
+      border-bottom: 1px solid rgba(255,235,202,.05);
+    }
+    .pm-features li::before {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+      margin-top: .33em;
+    }
+    .pm-price-row {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin: .9rem 0 1.1rem;
+      padding: .65rem .9rem;
+      background: rgba(247,169,44,.06);
+      border: 1px solid rgba(247,169,44,.18);
+      border-radius: 2px;
+    }
+    .pm-price-row.is-hidden { display: none; }
+    .pm-price-label {
+      font-family: var(--font-body);
+      font-size: .58rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,235,202,.42);
+      flex: 1;
+    }
+    .pm-price-value {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      color: var(--amber);
+      letter-spacing: -.01em;
+    }
+    .pm-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      background: var(--amber);
+      color: var(--near-black);
+      font-family: var(--font-body);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: .95rem 1.4rem;
+      border-radius: 2px;
+      margin-top: auto;
+      padding-top: 1.3rem;
+      transition: background .22s, transform .22s, box-shadow .22s;
+    }
+    .pm-cta-btn:hover {
+      background: #e6952a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(247,169,44,.28);
+    }
+    @media (max-width: 680px) {
+      .pm-backdrop { padding: 0; align-items: flex-end; }
+      .pm-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: 220px 1fr;
+        max-width: 100%;
+        max-height: 92vh;
+        border-radius: 14px 14px 0 0;
+        transform: translateY(100%);
+      }
+      .pm-backdrop.is-open .pm-panel { transform: translateY(0); }
+      .pm-img-side { min-height: 0; }
+      .pm-img-overlay {
+        background: linear-gradient(to bottom, rgba(5,12,10,.1) 40%, #0c1a14 100%);
+      }
+      .pm-content-side {
+        max-height: calc(92vh - 220px);
+        padding: 1.4rem 1.5rem 2.4rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1971,16 +2498,6 @@
             <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Especial</span></div>
             <p class="prog-event-title">Cerimônia de Abertura Oficial</p></div>
           </div>
-          <div class="prog-item destaque destaque-gala">
-            <span class="prog-time">18h30</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Sessão de Gala</span></div>
-            <p class="prog-event-title">"Me Chama Que Eu Vou"</p></div>
-          </div>
-          <div class="prog-item destaque destaque-show">
-            <span class="prog-time">20h</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show</span></div>
-            <p class="prog-event-title">Show de Abertura: Sidney Magal</p></div>
-          </div>
         </div>
       </div>
 
@@ -2017,16 +2534,6 @@
             <span class="prog-time">16h</span>
             <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
             <p class="prog-event-title">Sessão Cinema 60+</p></div>
-          </div>
-          <div class="prog-item destaque destaque-espec">
-            <span class="prog-time">18h</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Homenagem</span></div>
-            <p class="prog-event-title">Tributo a Matheus Nachtergaele</p></div>
-          </div>
-          <div class="prog-item destaque destaque-gala">
-            <span class="prog-time">19h</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Clássicos do Brasil</span></div>
-            <p class="prog-event-title">"Tapete Vermelho"</p></div>
           </div>
           <div class="prog-item destaque destaque-show">
             <span class="prog-time">20h30</span>
@@ -2065,16 +2572,6 @@
             <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cultural">Cultural</span></div>
             <p class="prog-event-title">Sons do Palmital</p></div>
           </div>
-          <div class="prog-item destaque destaque-espec">
-            <span class="prog-time">16h30</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Encontro</span></div>
-            <p class="prog-event-title">Encontro com Luiz Miranda</p></div>
-          </div>
-          <div class="prog-item destaque destaque-gala">
-            <span class="prog-time">17h30</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Sessão Especial</span></div>
-            <p class="prog-event-title">"O Auto da Compadecida 2"</p></div>
-          </div>
           <div class="prog-item destaque destaque-show">
             <span class="prog-time">20h</span>
             <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show</span></div>
@@ -2111,16 +2608,6 @@
             <span class="prog-time">17h</span>
             <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-cinema">Cinema</span></div>
             <p class="prog-event-title">Sessão Torcida Brasil</p></div>
-          </div>
-          <div class="prog-item destaque destaque-espec">
-            <span class="prog-time">19h</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-especial">Encontro</span></div>
-            <p class="prog-event-title">Encontro com convidados — Luiz Miranda, Matheus Nachtergaele, cineastas, atores e personalidades da gastronomia e turismo local</p></div>
-          </div>
-          <div class="prog-item destaque destaque-show">
-            <span class="prog-time">20h</span>
-            <div class="prog-info"><div class="prog-info-row"><span class="prog-tag tag-show">Show de Encerramento</span></div>
-            <p class="prog-event-title">Renato Teixeira</p></div>
           </div>
         </div>
       </div>
@@ -2172,6 +2659,127 @@
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PASSEIOS ══ -->
+  <section class="passeios-section" id="passeios" aria-labelledby="passeios-heading">
+    <div class="passeios-inner">
+
+      <div class="passeios-header">
+        <div class="passeios-header-meta">
+          <p class="passeios-kicker">Experiências da Rota</p>
+          <h2 class="passeios-heading" id="passeios-heading">Viva a Serra<br>além do festival</h2>
+          <p class="passeios-sub">Passeios exclusivos que transformam a viagem em uma experiência completa pela Rota do Buquira</p>
+        </div>
+        <span class="passeios-count" aria-hidden="true">04</span>
+      </div>
+
+      <div class="passeios-grid">
+
+        <!-- ── CHARRETE ── -->
+        <article class="passeio-card" id="pc0" tabindex="0" aria-label="Passeio de Charrete — Transfer histórico pela Serra do Palmital">
+          <div class="pc-img" style="background-image:url('assets/passeios/CHARRETE/WhatsApp%20Image%202026-06-17%20at%2014.32.23.jpeg')"></div>
+          <div class="pc-overlay"></div>
+          <div class="pc-accent"></div>
+          <span class="pc-num">01</span>
+          <div class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" width="48" height="48">
+              <circle cx="9" cy="26" r="5.5" stroke-width="1.3"/>
+              <line x1="9" y1="20.5" x2="9" y2="26" stroke-width="1" opacity=".4"/>
+              <line x1="9" y1="31.5" x2="9" y2="26" stroke-width="1" opacity=".4"/>
+              <line x1="3.5" y1="26" x2="14.5" y2="26" stroke-width="1" opacity=".4"/>
+              <circle cx="27" cy="26" r="5.5" stroke-width="1.3"/>
+              <line x1="27" y1="20.5" x2="27" y2="26" stroke-width="1" opacity=".4"/>
+              <line x1="27" y1="31.5" x2="27" y2="26" stroke-width="1" opacity=".4"/>
+              <line x1="21.5" y1="26" x2="32.5" y2="26" stroke-width="1" opacity=".4"/>
+              <rect x="10" y="12" width="18" height="10" rx="1.5" stroke-width="1.3"/>
+              <path d="M10 13 Q18 9.5 28 13" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+              <line x1="10" y1="22" x2="5" y2="26" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-tag">Trem de Pouso · Empório &amp; Bike Point</span>
+            <h3 class="pc-title">Transfer de Charrete</h3>
+            <p class="pc-desc">Chegue e parta em grande estilo a bordo de uma charrete histórica. Uma viagem no tempo pelos caminhos de terra da Serra do Palmital.</p>
+            <span class="pc-cta">Saiba mais <span class="pc-cta-arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
+
+        <!-- ── ESCOLA DE VOO ── -->
+        <article class="passeio-card" id="pc1" tabindex="0" aria-label="Escola de Vôo — Vôo a Vela sobre o Vale do Paraíba">
+          <div class="pc-img" style="background-image:url('assets/passeios/ESCOLA%20DE%20VOO/WhatsApp%20Image%202026-06-18%20at%2013.34.08.jpeg')"></div>
+          <div class="pc-overlay"></div>
+          <div class="pc-accent"></div>
+          <span class="pc-num">02</span>
+          <div class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" width="48" height="48">
+              <path d="M4 19 Q12 16 20 18 Q26 20 32 17" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M15 18 L9 8 M16 18 L9 28" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M27 17.5 L23.5 12.5 M27.5 17.5 L23.5 22.5" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M4 19 Q3 18.5 2 17.5" stroke-width="1.1" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-tag">Aeroclube CTA · Planadores</span>
+            <h3 class="pc-title">Vôo a Vela</h3>
+            <p class="pc-desc">Sobrevoar as serras e vales do Vale do Paraíba em silêncio absoluto a bordo de um planador. Uma perspectiva que transforma a paisagem em arte viva.</p>
+            <span class="pc-cta">Saiba mais <span class="pc-cta-arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
+
+        <!-- ── PASSEIO A CAVALO ── -->
+        <article class="passeio-card" id="pc2" tabindex="0" aria-label="Passeio a Cavalo — Turismo rural pela Serra">
+          <div class="pc-img" style="background-image:url('assets/passeios/PASSEIO%20A%20CAVALO/WhatsApp%20Image%202026-06-23%20at%2015.14.32.jpeg')"></div>
+          <div class="pc-overlay"></div>
+          <div class="pc-accent"></div>
+          <span class="pc-num">03</span>
+          <div class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" width="48" height="48">
+              <ellipse cx="17" cy="21" rx="9" ry="5.5" stroke-width="1.3"/>
+              <path d="M23 17.5 Q26 11 24.5 8.5 L22 8 L21 10 L21.5 16.5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24.5 8.5 L25.5 6.5 L26.5 8.5" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="11" y1="25.5" x2="10" y2="32" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="14" y1="26.5" x2="14" y2="33" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="20" y1="26.5" x2="20" y2="33" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="23" y1="25.5" x2="24.5" y2="32" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M8.5 20 Q5 22 5.5 27" stroke-width="1.1" stroke-linecap="round"/>
+              <path d="M21 8 Q19.5 11 21 14" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-tag">Turismo Rural · Para toda a família</span>
+            <h3 class="pc-title">Passeio a Cavalo</h3>
+            <p class="pc-desc">Percorra trilhas históricas pelos caminhos da Serra com guias especializados. Conexão pura com a natureza e a cultura rural do Vale do Paraíba.</p>
+            <span class="pc-cta">Saiba mais <span class="pc-cta-arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
+
+        <!-- ── ROTA DA CACHAÇA ── -->
+        <article class="passeio-card" id="pc3" tabindex="0" aria-label="Rota da Cachaça — Visita às destilarias artesanais da região">
+          <div class="pc-img" style="background-image:url('assets/passeios/ROTA%20DA%20CACHA%C3%87A/Cacha%C3%A7a_Maristela_2019.jpg')"></div>
+          <div class="pc-overlay"></div>
+          <div class="pc-accent"></div>
+          <span class="pc-num">04</span>
+          <div class="pc-icon" aria-hidden="true">
+            <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" width="48" height="48">
+              <path d="M12 10 Q9 18 12 27 L24 27 Q27 18 24 10 Z" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M10.5 16.5 Q18 18.5 25.5 16.5" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M10.5 21 Q18 23 25.5 21" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="12" y1="10" x2="24" y2="10" stroke-width="1.3"/>
+              <path d="M16 10 L16 6.5 L20 6.5 L20 10" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="18" cy="6.5" r="1.2" fill="currentColor" stroke="none" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="pc-content">
+            <span class="pc-tag">Destilarias Artesanais · Serra do Palmital</span>
+            <h3 class="pc-title">Rota da Cachaça</h3>
+            <p class="pc-desc">Conheça as destilarias artesanais da região, aprenda sobre o processo de produção e deguste rótulos exclusivos produzidos na Serra.</p>
+            <span class="pc-cta">Saiba mais <span class="pc-cta-arrow" aria-hidden="true">→</span></span>
+          </div>
+        </article>
 
       </div>
     </div>
@@ -2775,6 +3383,205 @@
       }
     })();
 
+    /* ════════════════════════════════════════
+       PASSEIOS — scroll-triggered reveal + modal
+    ════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', function () {
+      var SYMPLA = 'https://www.sympla.com.br/evento/1-festival-internacional-serra-do-palmital/3449797';
+
+      var DATA = {
+        pc0: {
+          category: 'Passeio',
+          title: 'Passeio de Charrete',
+          image: 'assets/passeios/CHARRETE/WhatsApp%20Image%202026-06-17%20at%2014.32.23.jpeg',
+          num: '01',
+          paras: [
+            'Em parceria com a Trem de Pouso, o Festival Internacional da Serra do Palmital convida você e sua família para viver uma experiência especial, apreciando as paisagens e o clima único da serra de uma forma inesquecível.',
+            'Uma atração perfeita para quem quer desacelerar e aproveitar cada momento em contato com a natureza.'
+          ],
+          price: 'R$ 25',
+          priceLabel: 'Passeio de charrete'
+        },
+        pc1: {
+          category: 'Experiência Aérea',
+          title: 'Aeroclube de Voo e Vela CTA',
+          image: 'assets/passeios/ESCOLA%20DE%20VOO/WhatsApp%20Image%202026-06-18%20at%2013.34.08.jpeg',
+          num: '02',
+          paras: [
+            'Durante o Festival Internacional da Serra do Palmital, você poderá conhecer de perto o trabalho do Aeroclube de Voo a Vela CTA e viver uma experiência diferente em meio às belezas da nossa região.',
+            'Uma oportunidade para descobrir mais sobre o universo da aviação e se encantar com um dos atrativos da Serra do Palmital.'
+          ],
+          price: 'R$ 35',
+          priceLabel: 'Visita à escola'
+        },
+        pc2: {
+          category: 'Turismo Rural',
+          title: 'Passeio a Cavalo',
+          image: 'assets/passeios/PASSEIO%20A%20CAVALO/WhatsApp%20Image%202026-06-23%20at%2015.14.32.jpeg',
+          num: '03',
+          paras: [
+            'Você poderá viver a experiência do passeio a cavalo e explorar os encantos da região em meio à natureza e às belas paisagens da serra.',
+            'A experiência inclui cavalo, equipamentos e acompanhamento de cavaleiro guia para garantir conforto e segurança durante todo o percurso.',
+            'Uma parceria especial com @campolinacampoverde para tornar essa vivência ainda mais completa!'
+          ]
+        },
+        pc3: {
+          category: 'Cultura & Gastronomia',
+          title: 'Rota da Cachaça',
+          image: 'assets/passeios/ROTA%20DA%20CACHA%C3%87A/Cacha%C3%A7a_Maristela_2019.jpg',
+          num: '04',
+          paras: [
+            'Participe da Rota das Cachaçarias e descubra os segredos da produção artesanal da cachaça e da tradicional Taiada, patrimônio cultural da região.'
+          ],
+          features: [
+            'Visitação aos espaços de produção artesanal',
+            'Demonstração dos métodos tradicionais de fabricação',
+            'Conheça o processo de fermentação e destilação',
+            'Histórias e saberes transmitidos entre gerações',
+            'Degustação de produtos regionais',
+            'Contato direto com produtores locais',
+            'Cultura, turismo e gastronomia em um só lugar'
+          ],
+          closing: 'Acompanhe cada etapa da produção, desde a seleção da matéria-prima até o produto final, valorizando os métodos artesanais que preservam a identidade e a tradição do campo.'
+        }
+      };
+
+      var backdrop = document.getElementById('pm-backdrop');
+      var panel    = document.getElementById('pm-panel');
+      var closeBtn = document.getElementById('pm-close');
+      var pmImg    = document.getElementById('pm-img');
+      var pmNum    = document.getElementById('pm-num');
+      var pmCat    = document.getElementById('pm-category');
+      var pmTitle  = document.getElementById('pm-title-text');
+      var pmBody   = document.getElementById('pm-body');
+      var pmPrRow  = document.getElementById('pm-price-row');
+      var pmPrLbl  = document.getElementById('pm-price-label');
+      var pmPrVal  = document.getElementById('pm-price-value');
+      var pmCta    = document.getElementById('pm-cta');
+      var prevFocus = null;
+
+      if (!backdrop) return;
+
+      function openModal(id) {
+        var d = DATA[id];
+        if (!d) return;
+        prevFocus = document.activeElement;
+
+        pmImg.style.backgroundImage = "url('" + d.image + "')";
+        pmNum.textContent  = d.num || '';
+        pmCat.textContent  = d.category || '';
+        pmTitle.textContent = d.title;
+
+        var html = '';
+        (d.paras || []).forEach(function (p) {
+          html += '<p class="pm-desc-para">' + p + '</p>';
+        });
+        if (d.features && d.features.length) {
+          html += '<ul class="pm-features">';
+          d.features.forEach(function (f) { html += '<li>' + f + '</li>'; });
+          html += '</ul>';
+        }
+        if (d.closing) {
+          html += '<p class="pm-desc-para" style="font-style:italic;opacity:.7">' + d.closing + '</p>';
+        }
+        pmBody.innerHTML = html;
+
+        if (d.price) {
+          pmPrLbl.textContent = d.priceLabel || 'Ingresso';
+          pmPrVal.textContent = d.price;
+          pmPrRow.classList.remove('is-hidden');
+        } else {
+          pmPrRow.classList.add('is-hidden');
+        }
+
+        pmCta.href = SYMPLA;
+        document.body.style.overflow = 'hidden';
+        backdrop.classList.add('is-open');
+        setTimeout(function () { panel.focus(); }, 50);
+      }
+
+      function closeModal() {
+        backdrop.classList.remove('is-open');
+        document.body.style.overflow = '';
+        var pf = prevFocus;
+        prevFocus = null;
+        if (pf && pf.focus) setTimeout(function () { pf.focus(); }, 50);
+      }
+
+      /* focus trap */
+      panel.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var foc = panel.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        var first = foc[0], last = foc[foc.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
+
+      backdrop.addEventListener('click', function (e) {
+        if (e.target === backdrop) closeModal();
+      });
+      closeBtn.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closeModal();
+      });
+
+      /* scroll-reveal + card click → modal */
+      var cards = document.querySelectorAll('.passeio-card');
+      if (!cards.length) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      cards.forEach(function (card) {
+        io.observe(card);
+        card.addEventListener('click', function () { openModal(card.id); });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(card.id);
+          }
+        });
+      });
+    });
+
   </script>
+
+  <!-- ══ PASSEIOS MODAL ══ -->
+  <div class="pm-backdrop" id="pm-backdrop" role="dialog" aria-modal="true" aria-labelledby="pm-title-text">
+    <div class="pm-panel" id="pm-panel" tabindex="-1">
+
+      <div class="pm-img-side">
+        <div class="pm-img" id="pm-img"></div>
+        <div class="pm-img-overlay"></div>
+        <span class="pm-img-num" id="pm-num" aria-hidden="true"></span>
+      </div>
+
+      <div class="pm-content-side">
+        <button class="pm-close" id="pm-close" aria-label="Fechar">&#x2715;</button>
+        <p class="pm-category" id="pm-category"></p>
+        <h2 class="pm-title" id="pm-title-text"></h2>
+        <hr class="pm-rule">
+        <div id="pm-body"></div>
+        <div class="pm-price-row is-hidden" id="pm-price-row">
+          <span class="pm-price-label" id="pm-price-label"></span>
+          <span class="pm-price-value" id="pm-price-value"></span>
+        </div>
+        <a href="#" class="pm-cta-btn" id="pm-cta" target="_blank" rel="noopener noreferrer">
+          Garantir Ingresso &nbsp;→
+        </a>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
